@@ -1,0 +1,16 @@
+@import "bootstrap";
+@import "mixin";
+@import "vpr";
+@import "vpr-svg";
+@import "ionicons";
+
+svg {
+    border: 1px solid black;
+    margin: 20px auto;
+    display: block;
+    background: $black;
+}
+
+ul {
+    text-align: center;
+}
