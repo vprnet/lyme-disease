@@ -2,7 +2,7 @@ GND.chart = {};
 
 GND.chart.margin = {
     'top': 20,
-    'right': 30,
+    'right': 10,
     'bottom': 30,
     'left': 40
 };
@@ -26,30 +26,6 @@ GND.chart.yAxis = d3.svg.axis()
     .scale(GND.chart.y)
     .orient("left");
 
-GND.chart.avgValues = [
-    {'name': 'VT',
-    'mean': 164},
-    {'name': 'RI',
-    'mean': 342},
-    {'name': 'ME',
-    'mean': 412},
-    {'name': 'NH',
-    'mean': 544},
-    {'name': 'CT',
-    'mean': 2052},
-    {'name': 'MA',
-    'mean': 2163},
-    {'name': 'All',
-    'mean': 6271}
-];
-
-GND.chart.avgScale = d3.svg.axis()
-    .scale(GND.chart.y)
-    .tickValues([164, 342, 412, 544, 2052, 2163, 6271])
-    .tickFormat(function(d, i) { return GND.chart.avgValues[i].name; })
-    .orient("right");
-
-
 GND.chart.x.domain(["'99", "'00", "'01", "'02", "'03", "'04", "'05", "'06",
     "'07", "'08", "'09", "'10", "'11", "'12"]);
 
@@ -71,12 +47,6 @@ GND.chart.init = function(state) {
     GND.chart.data = data;
 
     GND.chart.y.domain([0, d3.max(data, function(d) { return d; })]);
-    var max = d3.max(data, function(d) { return d; });
-
-    GND.chart.base.append("text")
-        .attr("class", "no-data")
-        .attr("transform", "translate(30," + (GND.chart.options.height - 20) + ")")
-        .text("No Data");
 
     GND.chart.base.append("g")
         .attr("class", "x axis")
@@ -87,13 +57,8 @@ GND.chart.init = function(state) {
         .attr("class", "y axis")
         .call(GND.chart.yAxis);
 
-    GND.chart.base.append("g")
-        .attr("class", "avg axis")
-        .attr("transform", "translate(" + GND.chart.options.width + ",0)")
-        .call(GND.chart.avgScale);
-
     GND.chart.base.selectAll(".bar")
-            .data(data)
+            .data(data, function(d,i) { return GND.chart.x.domain()[i]; })
         .enter().append('rect')
             .attr("class", "bar")
             .attr("x", function(d,i) {
@@ -109,9 +74,7 @@ GND.chart.init = function(state) {
 GND.chart.update = function(state) {
     var data = GND.data[state].cases;
 
-    // Update Y scale and axis
     GND.chart.y.domain([0, d3.max(data, function(d) { return parseInt(d, 10); })]);
-    var max = d3.max(data, function(d) { return d; });
 
     var noData = GND.chart.base.select('text.no-data');
 
@@ -121,15 +84,16 @@ GND.chart.update = function(state) {
         noData.style("visibility", "hidden");
     }
 
+    if (state === 'New England' || state === 'Connecticut') {
+        $('#no_data').hide().fadeIn();
+    } else {
+        $('#no_data').fadeOut();
+    }
+
     GND.chart.base.select('.y.axis')
         .transition()
         .duration(1000)
         .call(GND.chart.yAxis);
-
-    GND.chart.base.select('.avg.axis')
-        .transition()
-        .duration(1000)
-        .call(GND.chart.avgScale);
 
     var bars = GND.chart.base.selectAll('.bar')
         .data(data);

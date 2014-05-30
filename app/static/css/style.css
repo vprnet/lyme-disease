@@ -8546,28 +8546,41 @@ ul {
 }
 
 /* line 19, ../dev/sass/style.scss */
-svg.chart {
-  background: #dddedf;
+#chart_container {
+  max-width: 450px;
   display: block;
-  border: 1px solid black;
   margin: 20px auto;
 }
-/* line 24, ../dev/sass/style.scss */
-svg.chart .bar {
+/* line 23, ../dev/sass/style.scss */
+#chart_container svg.chart {
+  border: 1px solid #75787b;
+}
+/* line 25, ../dev/sass/style.scss */
+#chart_container svg.chart .bar {
   fill: steelblue;
 }
-/* line 28, ../dev/sass/style.scss */
-svg.chart .axis text {
+/* line 29, ../dev/sass/style.scss */
+#chart_container svg.chart .axis text {
   font: 10px sans-serif;
 }
-/* line 33, ../dev/sass/style.scss */
-svg.chart .axis path,
-svg.chart .axis line {
+/* line 34, ../dev/sass/style.scss */
+#chart_container svg.chart .axis path,
+#chart_container svg.chart .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-/* line 39, ../dev/sass/style.scss */
-svg.chart .x.axis path {
+/* line 40, ../dev/sass/style.scss */
+#chart_container svg.chart .x.axis path {
   display: none;
+}
+/* line 44, ../dev/sass/style.scss */
+#chart_container p {
+  position: absolute;
+  top: 60px;
+  left: 150px;
+  background: #dddedf;
+  padding: 10px;
+  width: 180px;
+  font-size: 12px;
 }

@@ -16,27 +16,38 @@ ul {
 }
 
 
-svg.chart {
-    background: lighten($gray, 40%);
+#chart_container {
+    max-width: 450px;
     display: block;
-    border: 1px solid black;
     margin: 20px auto;
-    .bar {
-        fill: steelblue;
-    }
+    svg.chart {
+        border: 1px solid $gray;
+        .bar {
+            fill: steelblue;
+        }
 
-    .axis text {
-        font: 10px sans-serif;
-    }
+        .axis text {
+            font: 10px sans-serif;
+        }
 
-    .axis path,
-    .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-    }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
 
-    .x.axis path {
-        display: none;
+        .x.axis path {
+            display: none;
+        }
+    }
+    p {
+        position: absolute;
+        top: 60px;
+        left: 150px;
+        background: lighten($gray, 40%);
+        padding: 10px;
+        width: 180px;
+        font-size: 12px;
     }
 }
