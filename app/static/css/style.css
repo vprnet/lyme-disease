@@ -8533,7 +8533,7 @@ footer span#copyright {
 }
 
 /* line 7, ../dev/sass/style.scss */
-svg {
+svg.map {
   border: 1px solid black;
   margin: 20px auto;
   display: block;
@@ -8543,4 +8543,31 @@ svg {
 /* line 14, ../dev/sass/style.scss */
 ul {
   text-align: center;
+}
+
+/* line 19, ../dev/sass/style.scss */
+svg.chart {
+  background: #dddedf;
+  display: block;
+  border: 1px solid black;
+  margin: 20px auto;
+}
+/* line 24, ../dev/sass/style.scss */
+svg.chart .bar {
+  fill: steelblue;
+}
+/* line 28, ../dev/sass/style.scss */
+svg.chart .axis text {
+  font: 10px sans-serif;
+}
+/* line 33, ../dev/sass/style.scss */
+svg.chart .axis path,
+svg.chart .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+/* line 39, ../dev/sass/style.scss */
+svg.chart .x.axis path {
+  display: none;
 }

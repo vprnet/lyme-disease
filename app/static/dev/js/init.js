@@ -5,7 +5,7 @@ GND.init = function() {
         .await(GND.map.loadAllData);
 };
 
-$('#map_selector li').on('click', function() {
+$('ul.map_selector li').on('click', function() {
     GND.map.field = $(this).attr('id');
     GND.map.loadData(GND.data, GND.map.field);
     GND.legend.update(GND.map.field);

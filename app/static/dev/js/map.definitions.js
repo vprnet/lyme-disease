@@ -23,7 +23,7 @@ GND.map.path = d3.geo.path()
     .projection(GND.map.projection);
 
 
-GND.map.svg = d3.select("#map").append("svg")
+GND.map.svg = d3.select("svg.map")
     .attr("width", GND.map.options.width)
     .attr("height", GND.map.options.height);
 
@@ -39,3 +39,7 @@ GND.stat.classToLabel = {
     'growthRate': 'Growth Rate',
     'cases': 'Cases (2012)'
 };
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

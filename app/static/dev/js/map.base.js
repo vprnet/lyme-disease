@@ -46,6 +46,7 @@ GND.map.loadAllData = function(error, base, data) {
     GND.map.loadData(data);
     GND.legend.init(GND.map.field);
     GND.stat.init(GND.map.field);
+    GND.chart.init();
 };
 
 GND.map.getScale = function(domain) {
@@ -63,7 +64,6 @@ GND.map.render = function(field) {
         .data(topojson.feature(states, states.objects.northeast).features)
         .style("fill", GND.map.fillFunc)
         .on('mouseover', function(d) {
-            console.log(d.properties.name);
             GND.stat.update(field, d.properties.name);
         });
 

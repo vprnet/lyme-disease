@@ -2,29 +2,35 @@ GND.stat.update = function(field, state) {
     if (typeof state === 'undefined') {
         state = 'New England';
     }
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+
+    var statDelay = 100;
 
     GND.stat.box.select('text.location-name')
-        .text(state);
+        .transition()
+        .text(state)
+        .delay(statDelay);
 
     GND.stat.box.select('text.field-value')
-        .text(GND.stat.classToLabel[field]);
+        .transition()
+        .text(GND.stat.classToLabel[field])
+        .delay(statDelay);
 
     var stat = GND.data[state][field];
 
     if (typeof stat === 'object') {
         GND.stat.box.select('text.stat-value')
-            .text(numberWithCommas(stat[stat.length-1]));
+            .transition()
+            .text(numberWithCommas(stat[stat.length-1]))
+            .delay(statDelay);
     } else {
         GND.stat.box.select('text.stat-value')
-            .text(GND.data[state][field]);
+            .transition()
+            .text(GND.data[state][field])
+            .delay(statDelay);
     }
 };
 
 GND.stat.init = function(field) {
-    console.log('stat.init');
     GND.map.svg.append("g")
         .attr("class", "stat-box");
 

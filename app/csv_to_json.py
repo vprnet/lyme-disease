@@ -9,6 +9,9 @@ del states[0]
 py_dict = {}
 for state in states:
     cases = state[1:-2]
+    for i in range(len(cases)):
+        if cases[i] == 'FALSE':
+            cases[i] = False
     py_dict[state[0]] = {'cases': cases,
         'growthRate': state[-1].rstrip("0"),
         'incidentRate': state[-2].rstrip("0")}

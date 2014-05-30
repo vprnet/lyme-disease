@@ -17,8 +17,8 @@ module.exports = function (grunt) {
                     'dev/js/map.stat.js',
                     'dev/js/map.legend.js',
                     'dev/js/map.base.js',
-                    'dev/js/map.init.js',
-                    'dev/js/graph.js',
+                    'dev/js/chart.js',
+                    'dev/js/init.js',
                     'dev/js/modernizr.js',
                     'dev/js/svg-support.js'
                 ],

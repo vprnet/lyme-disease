@@ -4,7 +4,7 @@
 @import "vpr-svg";
 @import "ionicons";
 
-svg {
+svg.map {
     border: 1px solid black;
     margin: 20px auto;
     display: block;
@@ -13,4 +13,30 @@ svg {
 
 ul {
     text-align: center;
+}
+
+
+svg.chart {
+    background: lighten($gray, 40%);
+    display: block;
+    border: 1px solid black;
+    margin: 20px auto;
+    .bar {
+        fill: steelblue;
+    }
+
+    .axis text {
+        font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+        display: none;
+    }
 }
