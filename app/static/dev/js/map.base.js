@@ -60,9 +60,15 @@ GND.map.render = function(field) {
     var states = GND.map.base;
     GND.map.currentScale = GND.map.getScale(GND.map.domain[field]);
 
-    GND.map.svg.selectAll(".state")
-        .data(topojson.feature(states, states.objects.northeast).features)
-        .style("fill", GND.map.fillFunc)
+    var state = GND.map.svg.selectAll('.state')
+        .data(topojson.feature(states, states.objects.northeast).features);
+
+    state
+        .transition()
+        .duration(300)
+        .style("fill", GND.map.fillFunc);
+
+    state
         .on('mouseover', function(d) {
             GND.stat.update(field, d.properties.name);
         });

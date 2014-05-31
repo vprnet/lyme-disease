@@ -13,7 +13,8 @@ GND.legend.domain = {
 };
 
 GND.legend.update = function(field) {
-    var legend = GND.map.svg.selectAll('g.legend').remove();
+    var legend = GND.map.svg.selectAll('g.legend')
+        .remove();
     GND.legend.init(GND.map.field);
 
 };

@@ -26,8 +26,8 @@ GND.chart.yAxis = d3.svg.axis()
     .scale(GND.chart.y)
     .orient("left");
 
-GND.chart.x.domain(["'99", "'00", "'01", "'02", "'03", "'04", "'05", "'06",
-    "'07", "'08", "'09", "'10", "'11", "'12"]);
+GND.chart.domain = ["'99", "'00", "'01", "'02", "'03", "'04", "'05", "'06",
+    "'07", "'08", "'09", "'10", "'11", "'12"];
 
 GND.chart.base = d3.select(".chart")
     .attr("width", GND.chart.options.width + GND.chart.margin.left +
@@ -39,12 +39,17 @@ GND.chart.base = d3.select(".chart")
             "," + GND.chart.margin.top + ")");
 
 GND.chart.init = function(state) {
+    GND.data['New England'].cases = GND.data['New England'].cases.slice(4);
+    GND.data.Connecticut.cases = GND.data.Connecticut.cases.slice(4);
+
     if (typeof state === 'undefined') {
         state = 'New England';
     }
 
+    GND.chart.x.domain(GND.chart.domain.slice(4));
+
     var data = GND.data[state].cases;
-    GND.chart.data = data;
+
 
     GND.chart.y.domain([0, d3.max(data, function(d) { return d; })]);
 
@@ -72,22 +77,20 @@ GND.chart.init = function(state) {
 };
 
 GND.chart.update = function(state) {
-    var data = GND.data[state].cases;
 
-    GND.chart.y.domain([0, d3.max(data, function(d) { return parseInt(d, 10); })]);
-
-    var noData = GND.chart.base.select('text.no-data');
-
-    if (!data[0]) {
-        noData.style("visibility", "visible");
-    } else {
-        noData.style("visibility", "hidden");
-    }
 
     if (state === 'New England' || state === 'Connecticut') {
-        $('#no_data').hide().fadeIn();
+        GND.chart.x.domain(GND.chart.domain.slice(4));
     } else {
-        $('#no_data').fadeOut();
+        GND.chart.x.domain(GND.chart.domain);
+    }
+
+    var data = GND.data[state].cases;
+    GND.chart.y.domain([0, d3.max(data, function(d) { return parseInt(d, 10); })]);
+    var newData = [];
+    for (i = 0; i < data.length; i++) {
+        newData.push({'year': GND.chart.x.domain()[i],
+            'cases': data[i]});
     }
 
     GND.chart.base.select('.y.axis')
@@ -95,16 +98,48 @@ GND.chart.update = function(state) {
         .duration(1000)
         .call(GND.chart.yAxis);
 
+    GND.chart.base.select('.x.axis')
+        .transition()
+        .duration(1000)
+        .call(GND.chart.xAxis);
+
     var bars = GND.chart.base.selectAll('.bar')
-        .data(data);
+        .data(newData, function(d) { return d.year; });
 
     bars
         .transition()
         .duration(800)
-        .attr("y", function(d) { return GND.chart.y(d); })
+        .attr("y", function(d) { return GND.chart.y(d.cases); })
+        .attr("x", function(d) {
+            return GND.chart.x(d.year);
+        })
         .attr("height", function(d) {
-            return GND.chart.options.height - GND.chart.y(d);
-        });
+            return GND.chart.options.height - GND.chart.y(d.cases);
+        })
+        .attr("width", GND.chart.x.rangeBand());
+
+    bars.enter().append('rect')
+        .attr('class', 'bar')
+        .attr("y", GND.chart.options.height)
+        .attr("height", 0)
+        .transition()
+            .delay(500)
+            .duration(500)
+            .attr("y", function(d) { return GND.chart.y(d.cases); })
+            .attr("x", function(d,i) {
+                return GND.chart.x(d.year);
+            })
+            .attr("height", function(d) {
+                return GND.chart.options.height - GND.chart.y(d.cases);
+            })
+            .attr("width", GND.chart.x.rangeBand());
+
+    bars.exit()
+        .transition()
+            .duration(500)
+            .attr("y", GND.chart.options.height)
+            .attr("height", 0)
+            .remove();
 };
 
 
