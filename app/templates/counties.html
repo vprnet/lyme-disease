@@ -2,11 +2,15 @@
 <meta charset="utf-8">
 <style>
 
-.land {
-  fill: #999;
+body {
 }
 
-.county-boundary {
+.land {
+  fill: #999;
+  stroke: #bbb;
+}
+
+.counties {
   fill: none;
   stroke: #fff;
   stroke-width: .5px;
@@ -19,14 +23,17 @@
 
 
 </style>
+
 <body>
+<p><span id="count_9296">1992-1996</span> <span id="count_9701">1997-2001</span> <span id="count_0206">2002-2006</span> <span id="count_0711">2007-2011</span></p>
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/queue.v1.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script>
-
 var width = 960,
     height = 500;
 
@@ -41,43 +48,83 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("/static/data/us.json", function(error, us) {
-    /*
-    console.log("County:", data[2].CountyCode);
-    console.log("jsonCounty:", us.objects.county.geometries[1].county);
-    for (var i = 0; i < data.length; i++) {
-        var county = data[i].CountyCode,
-            range1 = data[i].county_9296,
-            range2 = data[i].county_9701,
-            range3 = data[i].county_0206,
-            range4 = data[i].county_0711;
+var quantize = d3.scale.quantize()
+    .domain([0, 500])
+    .range(colorbrewer.Blues[9].slice(1));
 
-        for (var j = 0; j < us.objects.county.geometries.length; j++) {
-            var jsonCounty = us.objects.county.geometries[j].id;
+queue()
+    .defer(d3.json, '/static/data/us.json')
+    .defer(d3.csv, '/static/data/lyme-disease-by-county.csv')
+    .await(ready);
 
-            if (county === jsonCounty) {
-                us.objects.county.geometries[j].range1 = range1;
-                break
+function ready(error, us, data) {
+    svg.insert("path", ".graticule")
+        .datum(topojson.feature(us, us.objects.land))
+        .attr("class", "land")
+        .attr("d", path);
+
+    svg.append("g")
+        .attr("class", "counties")
+    .selectAll("path")
+        .data(topojson.feature(us, us.objects.counties).features)
+    .enter().append("path")
+        .attr("d", path)
+        .attr("class", "county")
+        .style("fill", function(d) {
+            for (var i=0; i < data.length; i++) {
+                var county = parseInt(data[i].id),
+                    cases = data[i].count_9296;
+
+                if (county === d.id) {
+                    if (cases) {
+                        return quantize(cases);
+                    } else {
+                        return "#f8f8f8";
+                    }
+                    break;
+                }
             }
-        }
-    }
-    */
-  svg.insert("path", ".graticule")
-      .datum(topojson.feature(us, us.objects.land))
-      .attr("class", "land")
-      .attr("d", path);
+            return '#999';
+        });
 
-  svg.insert("path", ".graticule")
-      .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
-      .attr("class", "county-boundary")
-      .attr("d", path);
+    svg.insert("path", ".graticule")
+        .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+        .attr("class", "state-boundary")
+        .attr("d", path);
 
-  svg.insert("path", ".graticule")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-      .attr("class", "state-boundary")
-      .attr("d", path);
-});
+    updateMap(data);
+}
+
+var updateMap = function(data) {
+    $('p span').click(function() {
+        var range = $(this).attr("id");
+        console.log(range);
+
+        svg.selectAll('.county')
+            .transition()
+            .delay(500)
+            .duration(1000)
+            .style("fill", function(d) {
+                for (var i=0; i < data.length; i++) {
+                    var county = parseInt(data[i].id),
+                        cases = data[i][range];
+
+                    if (county === d.id) {
+                        if (cases) {
+                            return quantize(cases);
+                        } else {
+                            return "#f8f8f8";
+                        }
+                        break;
+                    }
+                }
+                return '#999';
+            });
+    });
+}
 
 d3.select(self.frameElement).style("height", height + "px");
 
 </script>
+</body>
+</html>
