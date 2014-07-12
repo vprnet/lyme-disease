@@ -21,3 +21,8 @@ def index():
         page_title=page_title,
         social=social,
         page_url=page_url)
+
+
+@app.route('/counties')
+def counties():
+    return render_template('counties.html')
