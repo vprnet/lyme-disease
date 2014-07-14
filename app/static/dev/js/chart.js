@@ -1,5 +1,3 @@
-GND.chart = {};
-
 GND.chart.margin = {
     'top': 20,
     'right': 10,
@@ -38,9 +36,9 @@ GND.chart.base = d3.select(".chart")
         .attr("transform", "translate(" + GND.chart.margin.left +
             "," + GND.chart.margin.top + ")");
 
-GND.chart.init = function(state) {
-    GND.data['New England'].cases = GND.data['New England'].cases.slice(4);
-    GND.data.Connecticut.cases = GND.data.Connecticut.cases.slice(4);
+GND.chart.init = function(state, data) {
+    data['New England'].cases = data['New England'].cases.slice(4);
+    data.Connecticut.cases = data.Connecticut.cases.slice(4);
 
     if (typeof state === 'undefined') {
         state = 'New England';
@@ -48,7 +46,7 @@ GND.chart.init = function(state) {
 
     GND.chart.x.domain(GND.chart.domain.slice(4));
 
-    var data = GND.data[state].cases;
+    data = data[state].cases;
 
 
     GND.chart.y.domain([0, d3.max(data, function(d) { return d; })]);
@@ -85,11 +83,10 @@ GND.chart.update = function(state) {
         GND.chart.x.domain(GND.chart.domain);
     }
 
-    var data = GND.data[state].cases;
+    var data = GND.chart.data[state].cases;
     GND.chart.y.domain([0, d3.max(data, function(d) { return parseInt(d, 10); })]);
     var newData = [];
     for (i = 0; i < data.length; i++) {
-        console.log(GND.chart.x.domain()[i]);
         newData.push({'year': GND.chart.x.domain()[i],
             'cases': data[i]});
     }

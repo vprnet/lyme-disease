@@ -1,262 +1,24 @@
 var GND = GND || {};
-
-GND.map = {};
-GND.legend = {};
-GND.stat = {};
-
-GND.map.options = {
-    'width': 450,
-    'height': 600,
-    'colorRange': {
-        'growthRate': colorbrewer.PuOr[11].slice(1),
-        'cases': colorbrewer.Purples[4],
-        'incidentRate': colorbrewer.Purples[9]
-    }
-};
-
-GND.map.projection = d3.geo.transverseMercator()
-    .rotate([72.57, -44.20])
-    .translate([100,300])
-    .scale(5000);
-
-GND.map.path = d3.geo.path()
-    .projection(GND.map.projection);
-
-
-GND.map.svg = d3.select("svg.map")
-    .attr("width", GND.map.options.width)
-    .attr("height", GND.map.options.height);
-
-
-GND.map.domain = {
-    'cases': [1000, 2000, 3000],
-    'incidentRate': [10, 20, 30, 40, 50, 60, 70],
-    'growthRate': [-15, -10, -5, 0, 5, 10, 15, 20, 25]
-};
-
-GND.stat.classToLabel = {
-    'incidentRate': 'Incident Rate',
-    'growthRate': 'Growth Rate',
-    'cases': 'Cases (2012)'
-};
-
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-GND.stat.update = function(field, state) {
-    if (typeof state === 'undefined') {
-        state = 'New England';
-    }
-
-    var statDelay = 100;
-
-    GND.stat.box.select('text.location-name')
-        .transition()
-        .text(state)
-        .delay(statDelay);
-
-    GND.stat.box.select('text.field-value')
-        .transition()
-        .text(GND.stat.classToLabel[field])
-        .delay(statDelay);
-
-    var stat = GND.data[state][field];
-
-    if (typeof stat === 'object') {
-        GND.stat.box.select('text.stat-value')
-            .transition()
-            .text(numberWithCommas(stat[stat.length-1]))
-            .delay(statDelay);
-    } else {
-        GND.stat.box.select('text.stat-value')
-            .transition()
-            .text(GND.data[state][field])
-            .delay(statDelay);
-    }
-};
-
-GND.stat.init = function(field) {
-    GND.map.svg.append("g")
-        .attr("class", "stat-box");
-
-    GND.stat.box = GND.map.svg.select('g.stat-box');
-
-    GND.stat.box.append("text")
-        .attr("x", GND.map.options.width * 0.77)
-        .attr("y", GND.map.options.height * 0.65)
-        .attr("text-anchor", "middle")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "24px")
-        .attr("fill", "white")
-        .attr("class", "location-name")
-        .text('New England');
-
-    GND.stat.box.append("text")
-        .attr("x", GND.map.options.width * 0.77)
-        .attr("y", GND.map.options.height * 0.695)
-        .attr("text-anchor", "middle")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "24px")
-        .attr("fill", "white")
-        .attr("class", "field-value")
-        .text(GND.stat.classToLabel[field]);
-
-    GND.stat.box.append("text")
-        .attr("x", GND.map.options.width * 0.77)
-        .attr("y", GND.map.options.height * 0.78)
-        .attr("text-anchor", "middle")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "48px")
-        .attr("font-weight", "bold")
-        .attr("fill", "white")
-        .attr("class", "stat-value")
-        .text(GND.data['New England'][field]);
-};
-
-GND.legend.labels = {
-    'cases': ['> 0', '> 1000', '> 2000', '> 3000'],
-    'incidentRate': ['> 0', '> 10', '> 20', '> 30', '> 40', '> 50',
-        '> 60', '> 70'],
-    'growthRate': ['> -20', '> -15', '> -10', '> -5', '> 0', '> 5', '> 10',
-        '> 15', '> 20', '> 25']
-};
-
-GND.legend.domain = {
-    'cases': [0, 1000, 2000, 3000],
-    'incidentRate': [0, 10, 20, 30, 40, 50, 60, 70],
-    'growthRate': [-20, -15, -10, -5, 0, 5, 10, 15, 20, 25]
-};
-
-GND.legend.update = function(field) {
-    var legend = GND.map.svg.selectAll('g.legend')
-        .remove();
-    GND.legend.init(GND.map.field);
-
-};
-
-GND.legend.init = function(field) {
-    var legend = GND.map.svg.selectAll("g.legend")
-        .data(GND.legend.domain[field])
-        .enter().append('g')
-        .attr("class", "legend");
-
-    var ls_w = 20,
-        ls_h = 15;
-
-    legend.append("rect")
-        .attr("x", GND.map.options.width * 0.1)
-        .attr("y", function(d,i) { 
-            return GND.map.options.height * 0.3 - (i*ls_h) - 2*ls_h;})
-        .attr("width", ls_w)
-        .attr("height", ls_h)
-        .style("fill", function(d,i) {
-            return GND.map.getScale(GND.map.domain[field])(d); })
-        .style("opacity", 0,8);
-
-    legend.append("text")
-        .attr("x", GND.map.options.width * 0.1 + 30)
-        .attr("y", function(d,i) {
-            return GND.map.options.height * 0.3 - (i*ls_h) - ls_h -5;})
-        .text(function(d,i) { return GND.legend.labels[field][i]; });
-};
-
-GND.map.loadData = function(data, field) {
-    GND.dataArray = Object.keys(GND.data);
-    if (typeof field === 'undefined') {
-        GND.map.field = 'growthRate';
-    } else {
-        GND.map.field = field;
-    }
-
-    if (typeof GND.map.base.objects.northeast.geometries[0].properties[GND.map.field] === 'undefined') {
-        for (var i=0; i < GND.dataArray.length; i++) {
-            var dataState = GND.dataArray[i];
-            for (var j=0; j < GND.map.base.objects.northeast.geometries.length; j++) {
-                var jsonState = GND.map.base.objects.northeast.geometries[j].properties.name;
-                if (dataState == jsonState) {
-                    GND.map.base.objects.northeast.geometries[j].properties[GND.map.field] = data[GND.dataArray[i]][GND.map.field];
-                }
-            }
-        }
-    }
-    GND.map.render(GND.map.field);
-};
-
-GND.map.loadBaseMap = function(base) {
-
-    GND.map.svg.append("path")
-        .datum(topojson.feature(base, base.objects.canada))
-        .attr("d", GND.map.path)
-        .style("stroke", "#b2b3b5")
-        .style("fill", "#838383")
-        .style("stroke-width", "2");
-
-    GND.map.svg.selectAll(".state")
-        .data(topojson.feature(base, base.objects.northeast).features)
-        .enter().append("path")
-            .style("stroke", "#75787b")
-            .style("stroke-width", 1)
-            .style("fill", "#838383")
-            .attr("class", "state")
-            .attr("d", GND.map.path);
-};
-
-GND.map.loadAllData = function(error, base, data) {
-    GND.map.base = base;
-    GND.data = data;
-    GND.map.loadBaseMap(base);
-    GND.map.loadData(data);
-    GND.legend.init(GND.map.field);
-    GND.stat.init(GND.map.field);
-    GND.chart.init();
-};
-
-GND.map.getScale = function(domain) {
-    return d3.scale.threshold()
-        .domain(domain)
-        .range(GND.map.options.colorRange[GND.map.field]);
-};
-
-
-GND.map.render = function(field) {
-    var states = GND.map.base;
-    GND.map.currentScale = GND.map.getScale(GND.map.domain[field]);
-
-    var state = GND.map.svg.selectAll('.state')
-        .data(topojson.feature(states, states.objects.northeast).features);
-
-    state
-        .transition()
-        .duration(300)
-        .style("fill", GND.map.fillFunc);
-
-    state
-        .on('mouseover', function(d) {
-            GND.stat.update(field, d.properties.name);
-        });
-
-    GND.map.svg.on('mouseout', function(d) {
-        GND.stat.update(field);
-    });
-};
-
-GND.map.fillFunc = function(d) {
-    value = d.properties[GND.map.field];
-
-    if (GND.map.field === 'cases' && value) {
-        var casesIdx = value.length - 1;
-        value = value[casesIdx];
-    }
-
-    if (value) {
-        return GND.map.currentScale(value);
-    }
-
-    return "#838383";
-};
-
 GND.chart = {};
+GND.counties = {};
+
+GND.loadAllData = function(error, chartData, vt, mapData) {
+    GND.chart.data = chartData;
+    GND.chart.init('New England', chartData);
+    GND.counties.vt = vt;
+    GND.counties.data = mapData;
+    GND.counties.init(vt, mapData);
+};
+
+GND.init = function() {
+    queue()
+        .defer(d3.json, 'static/data/lyme-data.json')
+        .defer(d3.json, "static/data/vermont-counties.json")
+        .defer(d3.csv, "static/data/lyme-vt-counties.csv")
+        .await(GND.loadAllData);
+};
+
+GND.init();
 
 GND.chart.margin = {
     'top': 20,
@@ -296,9 +58,9 @@ GND.chart.base = d3.select(".chart")
         .attr("transform", "translate(" + GND.chart.margin.left +
             "," + GND.chart.margin.top + ")");
 
-GND.chart.init = function(state) {
-    GND.data['New England'].cases = GND.data['New England'].cases.slice(4);
-    GND.data.Connecticut.cases = GND.data.Connecticut.cases.slice(4);
+GND.chart.init = function(state, data) {
+    data['New England'].cases = data['New England'].cases.slice(4);
+    data.Connecticut.cases = data.Connecticut.cases.slice(4);
 
     if (typeof state === 'undefined') {
         state = 'New England';
@@ -306,7 +68,7 @@ GND.chart.init = function(state) {
 
     GND.chart.x.domain(GND.chart.domain.slice(4));
 
-    var data = GND.data[state].cases;
+    data = data[state].cases;
 
 
     GND.chart.y.domain([0, d3.max(data, function(d) { return d; })]);
@@ -343,11 +105,10 @@ GND.chart.update = function(state) {
         GND.chart.x.domain(GND.chart.domain);
     }
 
-    var data = GND.data[state].cases;
+    var data = GND.chart.data[state].cases;
     GND.chart.y.domain([0, d3.max(data, function(d) { return parseInt(d, 10); })]);
     var newData = [];
     for (i = 0; i < data.length; i++) {
-        console.log(GND.chart.x.domain()[i]);
         newData.push({'year': GND.chart.x.domain()[i],
             'cases': data[i]});
     }
@@ -422,21 +183,63 @@ function type(d) {
   return d;
 }
 
-GND.init = function() {
-    queue()
-        .defer(d3.json, 'static/data/northeast.json')
-        .defer(d3.json, 'static/data/lyme-data.json')
-        .await(GND.map.loadAllData);
+GND.counties.width = 133;
+GND.counties.height = 175;
+
+GND.counties.projection = d3.geo.transverseMercator()
+    .rotate([72.57, -44.20])
+    .translate([50,60])
+    .scale([4000]);
+
+GND.counties.path = d3.geo.path()
+    .projection(GND.counties.projection);
+
+
+GND.counties.mapColor = colorbrewer.Blues[9];
+
+GND.counties.quantize = d3.scale.quantize()
+    .domain([0, 150])
+    .range(GND.counties.mapColor);
+
+GND.counties.years = ['2000', '2001', '2002', '2003', '2004', '2005', '2006',
+    '2007', '2008', '2009', '2010', '2011', '2012', '2013'];
+
+GND.counties.init = function(vt, data) {
+    var vermont = topojson.feature(vt, vt.objects.counties);
+
+    for (var j=0; j<GND.counties.years.length; j++) {
+        var svg = d3.select("#vt-counties").append("svg")
+            .attr("x", 350*j)
+            .attr("width", GND.counties.width)
+            .attr("height", GND.counties.height);
+
+        svg.append("path")
+            .datum(vermont)
+            .attr("d", GND.counties.path)
+            .attr("x", j*400)
+            .style("stroke", "#777")
+            .style("stroke-width", "1");
+
+        svg.selectAll(".subunit")
+            .data(topojson.feature(vt, vt.objects.counties).features)
+        .enter().append("path")
+            .attr("d", GND.counties.path)
+            .attr("class", "county")
+            .style("fill", function(d) {
+                for (var i=0; i<data.length; i++) {
+                    if (data[i].county.toUpperCase() === d.properties.county) {
+                        var cases = data[i][GND.counties.years[j]];
+                        if (cases > 0) {
+                            return GND.counties.quantize(cases);
+                        } else {
+                            return "#ccc";
+                        }
+                    }
+                }
+                return "#aaa";
+            });
+        }
 };
-
-$('ul.map_selector li').on('click', function() {
-    GND.map.field = $(this).attr('id');
-    GND.map.loadData(GND.data, GND.map.field);
-    GND.legend.update(GND.map.field);
-    GND.stat.update(GND.map.field);
-});
-
-GND.init();
 
 /* Modernizr 2.7.1 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-svg-load

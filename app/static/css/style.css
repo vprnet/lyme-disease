@@ -5142,7 +5142,7 @@ html, body {
 }
 
 /* line 64, ../dev/sass/_vpr.scss */
-footer {
+footer.bottom {
   background: #646c6c;
   font-size: 12px;
   color: #e6e6e6;
@@ -5150,18 +5150,18 @@ footer {
   margin-top: -57px;
 }
 /* line 70, ../dev/sass/_vpr.scss */
-footer a {
+footer.bottom a {
   border-bottom: 2px solid #7c8686;
   color: #d9d9d9;
 }
 /* line 4, ../dev/sass/_mixin.scss */
-footer a:hover {
+footer.bottom a:hover {
   text-decoration: none;
   border-color: #ccd0d0;
   color: #e6e6e6;
 }
 /* line 73, ../dev/sass/_vpr.scss */
-footer span#copyright {
+footer.bottom span#copyright {
   float: right;
 }
 
@@ -5226,7 +5226,7 @@ footer span#copyright {
 
 @media (max-width: 768px) {
   /* line 120, ../dev/sass/_vpr.scss */
-  footer {
+  footer.bottom {
     padding-bottom: 20px;
   }
 
@@ -8534,10 +8534,31 @@ footer span#copyright {
 
 /* line 7, ../dev/sass/style.scss */
 h1 {
-  font-size: 72px;
+  font-size: 48px;
 }
 
 /* line 11, ../dev/sass/style.scss */
+blockquote {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/* line 14, ../dev/sass/style.scss */
+blockquote h3 {
+  font-size: 32px;
+  margin-top: 0;
+}
+
+/* line 21, ../dev/sass/style.scss */
+.intro_copy p {
+  font-size: 1.5em;
+  line-height: 1.3em;
+}
+/* line 25, ../dev/sass/style.scss */
+.intro_copy span.stronger {
+  font-weight: 700;
+}
+
+/* line 30, ../dev/sass/style.scss */
 svg.map {
   border: 1px solid black;
   margin: 20px auto;
@@ -8545,33 +8566,33 @@ svg.map {
   background: #3f4444;
 }
 
-/* line 18, ../dev/sass/style.scss */
+/* line 37, ../dev/sass/style.scss */
 ul {
   text-align: center;
 }
 
-/* line 23, ../dev/sass/style.scss */
+/* line 42, ../dev/sass/style.scss */
 svg.chart {
   display: block;
   margin: 20px auto;
   border: 1px solid #75787b;
 }
-/* line 27, ../dev/sass/style.scss */
+/* line 46, ../dev/sass/style.scss */
 svg.chart .bar {
   fill: steelblue;
 }
-/* line 31, ../dev/sass/style.scss */
+/* line 50, ../dev/sass/style.scss */
 svg.chart .axis text {
   font: 10px sans-serif;
 }
-/* line 36, ../dev/sass/style.scss */
+/* line 55, ../dev/sass/style.scss */
 svg.chart .axis path,
 svg.chart .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-/* line 42, ../dev/sass/style.scss */
+/* line 61, ../dev/sass/style.scss */
 svg.chart .x.axis path {
   display: none;
 }

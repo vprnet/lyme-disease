@@ -20,13 +20,13 @@
 <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
 <script>
 
-var width = 350,
-    height = 550;
+var width = 133,
+    height = 175;
 
 var projection = d3.geo.transverseMercator()
     .rotate([72.57, -44.20])
-    .translate([165,200])
-    .scale([12000]);
+    .translate([50,60])
+    .scale([4000]);
 
 var path = d3.geo.path()
     .projection(projection);

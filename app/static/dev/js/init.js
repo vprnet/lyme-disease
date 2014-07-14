@@ -1,15 +1,21 @@
-GND.init = function() {
-    queue()
-        .defer(d3.json, 'static/data/northeast.json')
-        .defer(d3.json, 'static/data/lyme-data.json')
-        .await(GND.map.loadAllData);
+var GND = GND || {};
+GND.chart = {};
+GND.counties = {};
+
+GND.loadAllData = function(error, chartData, vt, mapData) {
+    GND.chart.data = chartData;
+    GND.chart.init('New England', chartData);
+    GND.counties.vt = vt;
+    GND.counties.data = mapData;
+    GND.counties.init(vt, mapData);
 };
 
-$('ul.map_selector li').on('click', function() {
-    GND.map.field = $(this).attr('id');
-    GND.map.loadData(GND.data, GND.map.field);
-    GND.legend.update(GND.map.field);
-    GND.stat.update(GND.map.field);
-});
+GND.init = function() {
+    queue()
+        .defer(d3.json, 'static/data/lyme-data.json')
+        .defer(d3.json, "static/data/vermont-counties.json")
+        .defer(d3.csv, "static/data/lyme-vt-counties.csv")
+        .await(GND.loadAllData);
+};
 
 GND.init();

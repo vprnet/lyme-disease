@@ -13,12 +13,9 @@ module.exports = function (grunt) {
             dist: {
                 src: [
                     // Explicitly list files to determine order
-                    'dev/js/map.definitions.js',
-                    'dev/js/map.stat.js',
-                    'dev/js/map.legend.js',
-                    'dev/js/map.base.js',
-                    'dev/js/chart.js',
                     'dev/js/init.js',
+                    'dev/js/chart.js',
+                    'dev/js/counties.js',
                     'dev/js/modernizr.js',
                     'dev/js/svg-support.js'
                 ],

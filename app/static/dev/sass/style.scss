@@ -5,7 +5,26 @@
 @import "ionicons";
 
 h1 {
-    font-size: 72px;
+    font-size: 48px;
+}
+
+blockquote {
+    padding-top: 0;
+    padding-bottom: 0;
+    h3 {
+        font-size: 32px;
+        margin-top: 0;
+    }
+}
+
+.intro_copy {
+    p {
+        font-size: 1.5em;
+        line-height: 1.3em;
+    }
+    span.stronger {
+        font-weight: 700;
+    }
 }
 
 svg.map {
