@@ -6,6 +6,11 @@
         font: 10px sans-serif;
         display: inline;
     }
+
+    .county {
+        stroke-width: 1px;
+        stroke: #aaa;
+    }
 </style>
 
 <body>
@@ -15,26 +20,29 @@
 <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
 <script>
 
-// Set window height + width
-var width = 1500,
-    height = 1650;
+var width = 350,
+    height = 550;
 
-// Define map projection
-var projection = d3.geo.albersUsa()
-    .scale(700)
-    .translate([width / 2, height / 2]);
+var projection = d3.geo.transverseMercator()
+    .rotate([72.57, -44.20])
+    .translate([165,200])
+    .scale([12000]);
 
-// Define path generator
 var path = d3.geo.path()
     .projection(projection);
 
-// Create SVG Element
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+
+var mapColor = colorbrewer.Blues[9];
+
+var quantize = d3.scale.quantize()
+    .domain([0, 150])
+    .range(mapColor);
+
+var years = ['2000', '2001', '2002', '2003', '2004', '2005', '2006',
+    '2007', '2008', '2009', '2010', '2011', '2012', '2013'];
 
 queue()
-    .defer(d3.json, "static/data/counties.json")
+    .defer(d3.json, "static/data/vermont-counties.json")
     .defer(d3.csv, "static/data/lyme-vt-counties.csv")
     .await(ready);
 
@@ -42,17 +50,38 @@ queue()
 function ready(error, vt, data) {
     var vermont = topojson.feature(vt, vt.objects.counties);
 
-    svg.append("path")
-        .datum(vermont)
-        .attr("d", path)
-        .style("stroke", "#777")
-        .style("stroke-width", "1");
+    for (var j=0; j<years.length; j++) {
+        var svg = d3.select("body").append("svg")
+            .attr("x", 350*j)
+            .attr("width", width)
+            .attr("height", height);
 
-    svg.selectAll(".subunit")
-        .data(topojson.feature(vt, vt.objects.counties).features)
-    .enter().append("path")
-        .attr("d", path)
-        .style("fill", "blue");
+        svg.append("path")
+            .datum(vermont)
+            .attr("d", path)
+            .attr("x", j*400)
+            .style("stroke", "#777")
+            .style("stroke-width", "1");
+
+        svg.selectAll(".subunit")
+            .data(topojson.feature(vt, vt.objects.counties).features)
+        .enter().append("path")
+            .attr("d", path)
+            .attr("class", "county")
+            .style("fill", function(d) {
+                for (var i=0; i<data.length; i++) {
+                    if (data[i].county.toUpperCase() === d.properties.county) {
+                        var cases = data[i][years[j]];
+                        if (cases > 0) {
+                            return quantize(cases);
+                        } else {
+                            return "#ccc";
+                        }
+                    }
+                }
+                return "#aaa";
+            });
+    }
 
 };
 
