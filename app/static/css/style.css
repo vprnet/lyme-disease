@@ -8533,6 +8533,11 @@ footer span#copyright {
 }
 
 /* line 7, ../dev/sass/style.scss */
+h1 {
+  font-size: 72px;
+}
+
+/* line 11, ../dev/sass/style.scss */
 svg.map {
   border: 1px solid black;
   margin: 20px auto;
@@ -8540,33 +8545,33 @@ svg.map {
   background: #3f4444;
 }
 
-/* line 14, ../dev/sass/style.scss */
+/* line 18, ../dev/sass/style.scss */
 ul {
   text-align: center;
 }
 
-/* line 19, ../dev/sass/style.scss */
+/* line 23, ../dev/sass/style.scss */
 svg.chart {
   display: block;
   margin: 20px auto;
   border: 1px solid #75787b;
 }
-/* line 23, ../dev/sass/style.scss */
+/* line 27, ../dev/sass/style.scss */
 svg.chart .bar {
   fill: steelblue;
 }
-/* line 27, ../dev/sass/style.scss */
+/* line 31, ../dev/sass/style.scss */
 svg.chart .axis text {
   font: 10px sans-serif;
 }
-/* line 32, ../dev/sass/style.scss */
+/* line 36, ../dev/sass/style.scss */
 svg.chart .axis path,
 svg.chart .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-/* line 38, ../dev/sass/style.scss */
+/* line 42, ../dev/sass/style.scss */
 svg.chart .x.axis path {
   display: none;
 }

@@ -89,6 +89,7 @@ GND.chart.update = function(state) {
     GND.chart.y.domain([0, d3.max(data, function(d) { return parseInt(d, 10); })]);
     var newData = [];
     for (i = 0; i < data.length; i++) {
+        console.log(GND.chart.x.domain()[i]);
         newData.push({'year': GND.chart.x.domain()[i],
             'cases': data[i]});
     }

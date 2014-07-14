@@ -6,7 +6,7 @@ body {
 }
 
 .land {
-  fill: #999;
+  fill: white;
   stroke: #bbb;
 }
 
@@ -21,10 +21,27 @@ body {
   stroke: #fff;
 }
 
+p, h2 {
+    text-align: center;
+    margin: 5px 0;
+}
+
+span {
+    padding-right: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
+}
+
 
 </style>
 
 <body>
+<h2>Choose A Date Range</h2>
 <p><span id="count_9296">1992-1996</span> <span id="count_9701">1997-2001</span> <span id="count_0206">2002-2006</span> <span id="count_0711">2007-2011</span></p>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -48,9 +65,11 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
+var mapColor = colorbrewer.Reds[9];
+
 var quantize = d3.scale.quantize()
     .domain([0, 500])
-    .range(colorbrewer.Blues[9].slice(1));
+    .range(mapColor.slice(1));
 
 queue()
     .defer(d3.json, '/static/data/us.json')
@@ -79,7 +98,7 @@ function ready(error, us, data) {
                     if (cases) {
                         return quantize(cases);
                     } else {
-                        return "#f8f8f8";
+                        return '#f8f8f8';
                     }
                     break;
                 }
@@ -92,13 +111,12 @@ function ready(error, us, data) {
         .attr("class", "state-boundary")
         .attr("d", path);
 
-    updateMap(data);
+    chooseRange(data);
 }
 
-var updateMap = function(data) {
+var chooseRange = function(data) {
     $('p span').click(function() {
         var range = $(this).attr("id");
-        console.log(range);
 
         svg.selectAll('.county')
             .transition()
@@ -113,7 +131,7 @@ var updateMap = function(data) {
                         if (cases) {
                             return quantize(cases);
                         } else {
-                            return "#f8f8f8";
+                            return '#f8f8f8';
                         }
                         break;
                     }
@@ -122,6 +140,18 @@ var updateMap = function(data) {
             });
     });
 }
+
+var colorCounty = function(d, county, cases) {
+    if (county === d.id) {
+        if (cases) {
+            return quantize(cases);
+        } else {
+            return mapColor[0]
+        }
+    }
+    return false;
+};
+
 
 d3.select(self.frameElement).style("height", height + "px");
 

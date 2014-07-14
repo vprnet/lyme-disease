@@ -23,6 +23,11 @@ def index():
         page_url=page_url)
 
 
-@app.route('/counties')
-def counties():
-    return render_template('counties.html')
+@app.route('/us-counties')
+def us_counties():
+    return render_template('us-counties.html')
+
+
+@app.route('/vt-counties')
+def vt_counties():
+    return render_template('vt-counties.html')

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style>
+    svg {
+        font: 10px sans-serif;
+        display: inline;
+    }
+</style>
+
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+<script>
+
+// Set window height + width
+var width = 1500,
+    height = 1650;
+
+// Define map projection
+var projection = d3.geo.albersUsa()
+    .scale(700)
+    .translate([width / 2, height / 2]);
+
+// Define path generator
+var path = d3.geo.path()
+    .projection(projection);
+
+// Create SVG Element
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+queue()
+    .defer(d3.json, "static/data/counties.json")
+    .defer(d3.csv, "static/data/lyme-vt-counties.csv")
+    .await(ready);
+
+// Load CSV
+function ready(error, vt, data) {
+    var vermont = topojson.feature(vt, vt.objects.counties);
+
+    svg.append("path")
+        .datum(vermont)
+        .attr("d", path)
+        .style("stroke", "#777")
+        .style("stroke-width", "1");
+
+    svg.selectAll(".subunit")
+        .data(topojson.feature(vt, vt.objects.counties).features)
+    .enter().append("path")
+        .attr("d", path)
+        .style("fill", "blue");
+
+};
+
+
+</script>
