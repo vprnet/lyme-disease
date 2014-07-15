@@ -6,27 +6,28 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>Lyme Disease's Front Line: Vermont</h1>
+            <h1>Lyme Disease: The Quiet Epidemic</h1>
         </div>
     </div>
     <div class="row">
-        <div class="intro_copy col-sm-7 col-lg-9">
-            <p><span class="stronger">Lyme Disease cases are increasing faster in Vermont than anywhere else in the country.</span> The first known existence of the Borrelia bacteria dates back to up to 20 million years ago.[16] The disease is named after the towns of Lyme and Old Lyme, Connecticut, US, where a number of cases were identified in 1975.</p>
+        <div class="intro_copy col-md-8 col-lg-9">
+            <p>Forty years ago Lyme Disease didn't even have a name. Today, the neurodegenerative disease infects up to 300,000 annually and has greatly expanded its range beyond the small Connecticut town where it was first identified in 1975. While the data doesn't go that far back&mdash;and the <a href="http://www.cdc.gov/media/releases/2013/p0819-lyme-disease.html" alt="Link to CDC press release containing infection estimates">CDC estimates</a> that reported cases represent only 10% of the total number of infections&mdash;we are nonetheless left with an alarming picture of expanded range and skyrocketing infection rates over the last fifteen years. Nowhere is this expansion more evident than in <span class="stronger">Northern New England, home to the highest incident rates and fastest growing infection rates in the nation.</span></p>
         </div>
-        <div class="col-sm-5 col-lg-3">
-            <blockquote>
-                <h3>ep·i·dem·ic</h3>
-                <p>the occurrence of more cases of disease, injury, or other health condition than expected in a given area or among a specific group of persons during a particular period.</p>
-                <footer><a href="http://www.cdc.gov/excite/library/glossary.htm#epidemic">Center For Disease Control</a></footer>
-            </blockquote>
+        <div class="col-md-4 col-lg-3">
+            {% include "_underwriter.html" %}
         </div>
     </div>
-    <div class="row">
+    <hr>
+    <div class="vermont row">
         <div class="col-xs-12">
-            <h3>Lyme Disease Cases Are On The Rise in Vermont</h3>
-            <div id="vt-counties"></div>
+            <h3>In Vermont: From (Near) Zero To Endemic</h3>
+            <img class="vt-small-mult img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-by-county-vt.png') }}" alt="Lyme disease in vermont by county over time">
         </div>
-        <div class="col-sm-6">
+    </div>
+    <hr>
+    <div class="northern_new_england row">
+        <div class="col-xs-12">
+            <h3>...And In The Rest Of Northern New England</h3>
             <ul class="chart_selector list-inline">
                 <li>All</li>
                 <li>VT</li>
@@ -37,6 +38,53 @@
                 <li>RI</li>
             </ul>
             <svg class="chart"></svg>
+            <div class="col-md-6">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <th>State</th>
+                        <th>Incident Rate (2012)</th>
+                        <th>Growth Rate</th>
+                        <th>1999 Cases</th>
+                        <th>2012 Cases</th>
+                    </thead>
+                    {% for row in summary_statistics %}
+                    <tr>
+                        <td>{{ row.0 }}</td>
+                        <td>{{ row.1 }}</td>
+                        <td>{{ row.2 }}</td>
+                        <td>{{ row.3 }}</td>
+                        <td>{{ row.4 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <p class="table_dislaimer">*Reliable data from Connecticut prior to 2003 is not available.</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row nation">
+        <div class="col-xs-12">
+            <h3>But What About The Rest Of The Country?</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-9296.png') }}" alt="Lyme Disease cases nationwide from 1992-1996">
+                    <h4>1992-1996</h4>
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-9701.png') }}" alt="Lyme Disease cases nationwide from 1997-2001">
+                    <h4>1997-2001</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-0206.png') }}" alt="Lyme Disease cases nationwide from 2002-2006">
+                    <h4>2002-2006</h4>
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-0711.png') }}" alt="Lyme Disease cases nationwide from 2007-2011">
+                    <h4>2007-2011</h4>
+                </div>
+            </div>
         </div>
     </div>
 </div>

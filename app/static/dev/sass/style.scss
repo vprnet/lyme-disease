@@ -1,4 +1,4 @@
-@import "bootstrap";
+//@import "bootstrap";
 @import "mixin";
 @import "vpr";
 @import "vpr-svg";
@@ -6,6 +6,8 @@
 
 h1 {
     font-size: 48px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 blockquote {
@@ -19,11 +21,13 @@ blockquote {
 
 .intro_copy {
     p {
-        font-size: 1.5em;
+        font-size: 1.45em;
+        font-weight: 400;
         line-height: 1.3em;
     }
     span.stronger {
         font-weight: 700;
+        color: darken($red, 10%);
     }
 }
 
@@ -60,5 +64,35 @@ svg.chart {
 
     .x.axis path {
         display: none;
+    }
+}
+
+.vermont, .northern_new_england, .nationwide {
+    h3 {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+}
+
+.vermont {
+    img.vt-small-mult {
+        margin: 0 auto;
+    }
+}
+
+.nation {
+    h4 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
+
+table {
+    td {
+        text-align: right;
+    }
+    td:first-child {
+        text-align: left;
     }
 }

@@ -35,6 +35,7 @@ span {
 svg {
     display: block;
     margin: 0 auto;
+    border: 1px solid black;
 }
 
 
@@ -65,10 +66,10 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-var mapColor = colorbrewer.Reds[9];
+var mapColor = colorbrewer.Blues[9];
 
 var quantize = d3.scale.quantize()
-    .domain([0, 500])
+    .domain([0, 800])
     .range(mapColor.slice(1));
 
 queue()

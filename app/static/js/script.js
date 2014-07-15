@@ -201,7 +201,7 @@ GND.counties.quantize = d3.scale.quantize()
     .domain([0, 150])
     .range(GND.counties.mapColor);
 
-GND.counties.years = ['2000', '2001', '2002', '2003', '2004', '2005', '2006',
+GND.counties.years = ['1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006',
     '2007', '2008', '2009', '2010', '2011', '2012', '2013'];
 
 GND.counties.init = function(vt, data) {
