@@ -28,6 +28,9 @@ blockquote {
     span.stronger {
         font-weight: 700;
         color: darken($red, 10%);
+        a {
+            color: darken($red, 10%) !important;
+        }
     }
 }
 

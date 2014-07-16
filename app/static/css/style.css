@@ -3485,78 +3485,82 @@ blockquote h3 {
   font-weight: 700;
   color: #c7341f;
 }
+/* line 31, ../dev/sass/style.scss */
+.intro_copy span.stronger a {
+  color: #c7341f !important;
+}
 
-/* line 35, ../dev/sass/style.scss */
+/* line 38, ../dev/sass/style.scss */
 .vermont h3, .northern_new_england h3, .nation h3 {
   text-align: center;
   font-size: 2em;
   margin-bottom: 20px;
 }
-/* line 40, ../dev/sass/style.scss */
+/* line 43, ../dev/sass/style.scss */
 .vermont p.section_explanation, .northern_new_england p.section_explanation, .nation p.section_explanation {
   font-size: 20px;
   font-weight: 400;
   color: #75787b;
   margin-top: 30px;
 }
-/* line 45, ../dev/sass/style.scss */
+/* line 48, ../dev/sass/style.scss */
 .vermont p.section_explanation strong, .northern_new_england p.section_explanation strong, .nation p.section_explanation strong {
   color: #585e5e;
 }
 
-/* line 52, ../dev/sass/style.scss */
+/* line 55, ../dev/sass/style.scss */
 .vermont img.vt-small-mult {
   margin: 0 auto;
 }
 
-/* line 58, ../dev/sass/style.scss */
+/* line 61, ../dev/sass/style.scss */
 .northern_new_england svg.chart {
   display: block;
   margin: 0 auto;
 }
-/* line 61, ../dev/sass/style.scss */
+/* line 64, ../dev/sass/style.scss */
 .northern_new_england svg.chart .bar {
   fill: steelblue;
 }
-/* line 65, ../dev/sass/style.scss */
+/* line 68, ../dev/sass/style.scss */
 .northern_new_england svg.chart .axis text {
   font: 10px sans-serif;
 }
-/* line 70, ../dev/sass/style.scss */
+/* line 73, ../dev/sass/style.scss */
 .northern_new_england svg.chart .axis path,
 .northern_new_england svg.chart .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-/* line 76, ../dev/sass/style.scss */
+/* line 79, ../dev/sass/style.scss */
 .northern_new_england svg.chart .x.axis path {
   display: none;
 }
-/* line 80, ../dev/sass/style.scss */
+/* line 83, ../dev/sass/style.scss */
 .northern_new_england table {
   margin-bottom: 3px;
 }
-/* line 81, ../dev/sass/style.scss */
+/* line 84, ../dev/sass/style.scss */
 .northern_new_england table td {
   text-align: right;
 }
-/* line 84, ../dev/sass/style.scss */
+/* line 87, ../dev/sass/style.scss */
 .northern_new_england table td:first-child {
   text-align: left;
 }
-/* line 89, ../dev/sass/style.scss */
+/* line 92, ../dev/sass/style.scss */
 .northern_new_england .table_disclaimer {
   font-size: 12px;
   color: #8f9294;
   padding-left: 5px;
 }
 
-/* line 96, ../dev/sass/style.scss */
+/* line 99, ../dev/sass/style.scss */
 .nation {
   margin-bottom: 40px;
 }
-/* line 97, ../dev/sass/style.scss */
+/* line 100, ../dev/sass/style.scss */
 .nation h4 {
   text-align: center;
   margin-bottom: 30px;

@@ -11,23 +11,17 @@
     </div>
     <div class="row">
         <div class="intro_copy col-md-8">
-            <p>Forty years ago Lyme Disease didn't even have a name. Today, the tick-borne neurodegenerative disease infects up to 300,000 annually and has greatly expanded its range beyond the small Connecticut town where it was first identified in 1975. While the data doesn't go that far back&mdash;and the <a href="http://www.cdc.gov/media/releases/2013/p0819-lyme-disease.html" alt="Link to CDC press release containing infection estimates">CDC estimates</a> that reported cases represent only 10% of the total number of infections&mdash;we are nonetheless left with an alarming picture of expanded range and skyrocketing infection rates over the last fifteen years. Nowhere is this expansion more evident than in <span class="stronger">Northern New England, home to the highest incident rates and fastest growing infection rates in the nation.</span></p>
+            <p>Forty years ago Lyme Disease didn't even have a name. Today, the neurodegenerative disease <span class="stronger">infects up to <a href="http://www.cdc.gov/media/releases/2013/p0819-lyme-disease.html" alt="Link to CDC press release containing infection estimates">300,000 annually</a> and has greatly expanded its range</span> beyond the small Connecticut town where it was first identified in 1975. While the data doesn't go that far back, the numbers from the last 15 years paint an alarming picture of skyrocketing infection rates and a disease on the march.</p>
+            <p>The story of the growth of Lyme Disease is really the story of the deer tick, the primary vector for the disease and the beneficiary of a <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2582486/" alt="link between climate change and lyme disease expansion">warming climate</a> and <a href="http://www.nsf.gov/news/special_reports/ecoinf/lyme.jsp" alt="National Science Foundation resource illustrating the connection between forest fragmentation and lyme disease incidence">increasingly fragmented forests</a>. Where the deer tick and its <a href="http://www.cdc.gov/ticks/geographic_distribution.html#blacklegged" alt="CDC reference to rodents being the primary vector of the deer tick">small mammal hosts</a> are found, so too is Lyme Disease.</p>
         </div>
         <div class="col-md-4">
             {% include "_underwriter.html" %}
         </div>
     </div>
     <hr>
-    <div class="vermont row">
-        <div class="col-xs-12">
-            <h3>In Vermont: From (Near) Zero To Endemic</h3>
-            <img class="vt-small-mult img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-by-county-vt.png') }}" alt="Lyme disease in vermont by county over time">
-        </div>
-    </div>
-    <hr>
     <div class="northern_new_england row">
         <div class="col-xs-12">
-            <h3>...And In The Rest Of Northern New England</h3>
+            <h3>Northern New England: From (Near) Zero To Endemic</h3>
             <div class="data_container row">
                 <div class="chart_div col-sm-6">
                     <h4 class="chart_label">Northern New England</h4>
@@ -65,7 +59,7 @@
                     <p class="table_disclaimer">*Reliable data from Connecticut prior to 2003 is not available.</p>
                     <h5>Definitions</h5>
                     <h6>Incident Rate</h6>
-                    <p class="definition">Confirmed cases per 100,000 population</p>
+                    <p class="definition">Confirmed cases per 100,000 population based on 2012 data</p>
                     <h6>Growth Rate</h6>
                     <p class="definition">The <a href="http://en.wikipedia.org/wiki/Exponential_growth" alt="definiton of exponential growth rate">exponential growth rate</a>. Solve for r in x<sub>t</sub> = x<sub>0</sub>(1 + r)<sup>t</t></p>
                 </div>
@@ -78,9 +72,19 @@
         </div>
     </div>
     <hr>
+    <div class="vermont row">
+        <div class="col-xs-12">
+            <h3>Vermont: A Sign Of Things To Come</h3>
+            <img class="vt-small-mult img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-by-county-vt.png') }}" alt="Lyme disease in vermont by county over time">
+        </div>
+        <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <p class="section_explanation">Vermont's recent history with Lyme Disease is representative of the broader trends</p>
+        </div>
+    </div>
+    <hr>
     <div class="row nation">
         <div class="col-xs-12">
-            <h3>But What About The Rest Of The Country?</h3>
+            <h3>What About The Rest Of The Country?</h3>
             <div class="row">
                 <div class="col-sm-6">
                     <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-9296.png') }}" alt="Lyme Disease cases nationwide from 1992-1996">
@@ -103,7 +107,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-                    <p class="section_explanation">Lyme Disease is largely restricted to the <strong>Northeast</strong>, the <strong>Mid-Atlantic</strong> and the <strong>Upper Midwest</strong>, with <a href="http://www.cdc.gov/Lyme/stats/" alt="Lyme Disease stats from the CDC">95% of cases coming from just 13 states</a>. A number of factors have contributed to the deer tick's expanded range including <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2582486/" alt="Study on the impact of climate change">climate change</a> and <a href="http://www.nsf.gov/news/special_reports/ecoinf/lyme.jsp" alt="National Science foundation article explaining the role of forest fragmentation in the increasing number of cases">forest fragmentation</a>.</p>
+                    <p class="section_explanation">Lyme Disease is largely restricted to the <strong>Northeast</strong>, the <strong>Mid-Atlantic</strong> and the <strong>Upper Midwest</strong>, with <a href="http://www.cdc.gov/Lyme/stats/" alt="Lyme Disease stats from the CDC">95% of cases coming from just 13 states</a>. Despite
                 </div>
             </div>
         </div>
