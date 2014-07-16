@@ -13,7 +13,7 @@ $laptop: 1000px;
 $big-screen: 1200px;
 
 a {
-    @include lt_link($black, white, 2px);
+    @include lt_link(darken($gray, 5%), white, 2px);
 }
 
 html, body {

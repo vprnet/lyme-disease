@@ -2,11 +2,15 @@
 <meta charset="utf-8">
 
 <style>
-    svg {
+    svg.map {
         font: 10px sans-serif;
         display: inline;
         padding-right: 20px;
         padding-left: 20px;
+    }
+
+    svg.legend {
+        padding-left: 120px;
     }
 
     text {
@@ -15,6 +19,15 @@
 
     text.year {
         fill: #555;
+        font-size: 36px;
+    }
+
+    text.case_number {
+        font-size: 48px;
+    }
+
+    text.cases {
+        font-size: 30px;
     }
 
     .county {
@@ -24,6 +37,8 @@
 </style>
 
 <body>
+<div id="maps"></div>
+<div id="legend"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/queue.v1.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -45,11 +60,57 @@ var path = d3.geo.path()
 var mapColor = colorbrewer.Blues[9];
 
 var quantize = d3.scale.quantize()
-    .domain([0, 150])
-    .range(mapColor);
+    .domain([0, 160])
+    .range(mapColor.slice(1));
 
 var years = ['1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006',
     '2007', '2008', '2009', '2010', '2011', '2012', '2013'];
+
+var bins = ["No Cases", "1-19", "20-39", "40-59", "60-79", "80-99", "100-119", 
+    "120-139", "140-159"];
+
+var makeLegend = function() {
+    var colors = ["#ccc"].concat(mapColor.slice(1));
+
+    var legend = d3.select("#legend").append("svg")
+        .attr("class", "legend")
+        .attr("width", 1200)
+        .attr("height", 100);
+
+    var w = 50,
+        h = 20;
+
+    for (var i=0; i<colors.length; i++) {
+        legend.append("rect")
+            .attr("x", (i * (w + 50)) + 50)
+            .attr("y", 10)
+            .attr("width", w)
+            .attr("height", h)
+            .style("stroke-width", "2px")
+            .style("stroke", "#bbb")
+            .style("fill", colors[i]);
+
+        legend.append("text")
+            .attr("x", function() {
+                if (i === 0) {
+                    return i * (w + 50) + 30;
+                } else if (i === 1) {
+                    return i * (w + 50) + 54;
+                } else if ([2,3,4,5].indexOf(i) !== -1) {
+                    return i * (w + 50) + 48;
+                } else {
+                    return i * (w + 50) + 35;
+                }
+            })
+            .attr("y", 60)
+            .style("font-size", "22px")
+            .style("fill", "#555")
+            .text(bins[i]);
+
+    }
+};
+
+makeLegend();
 
 queue()
     .defer(d3.json, "static/data/vermont-counties.json")
@@ -61,7 +122,8 @@ function ready(error, vt, data) {
     var vermont = topojson.feature(vt, vt.objects.counties);
 
     for (var j=0; j<years.length; j++) {
-        var svg = d3.select("body").append("svg")
+        var svg = d3.select("#maps").append("svg")
+            .attr("class", "map")
             .attr("x", 350*j)
             .attr("width", width)
             .attr("height", height);
@@ -75,14 +137,13 @@ function ready(error, vt, data) {
         svg.append("text")
             .attr("x", 65)
             .attr("y", 30)
-            .style("font-size", "36px")
             .attr("class", "year")
             .text(years[j]);
 
         svg.append("text")
             .attr("x", 120)
             .attr("y", 335)
-            .style("font-size", "48px")
+            .attr("class", "case_number")
             .text(function() {
                 var total = 0;
                 for (var i=0; i<data.length; i++) {
@@ -94,7 +155,7 @@ function ready(error, vt, data) {
         svg.append("text")
             .attr("x", 120)
             .attr("y", 365)
-            .style("font-size", "30px")
+            .attr("class", "cases")
             .text("cases");
 
 

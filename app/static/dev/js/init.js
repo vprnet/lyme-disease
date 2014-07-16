@@ -4,7 +4,7 @@ GND.counties = {};
 
 GND.loadAllData = function(error, chartData, vt, mapData) {
     GND.chart.data = chartData;
-    GND.chart.init('New England', chartData);
+    GND.chart.init('Northern New England', chartData);
     GND.counties.vt = vt;
     GND.counties.data = mapData;
     GND.counties.init(vt, mapData);

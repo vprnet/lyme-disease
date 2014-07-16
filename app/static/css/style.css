@@ -1,13 +1,13 @@
 /* line 15, ../dev/sass/_vpr.scss */
 a {
   border-bottom: 2px solid #e6e6e6;
-  color: #4b5151;
+  color: #646669;
 }
 /* line 14, ../dev/sass/_mixin.scss */
 a:hover {
   text-decoration: none;
   border-color: #999999;
-  color: #3f4444;
+  color: #696b6e;
 }
 
 /* line 19, ../dev/sass/_vpr.scss */
@@ -76,7 +76,7 @@ footer.bottom {
 /* line 70, ../dev/sass/_vpr.scss */
 footer.bottom a {
   border-bottom: 2px solid #7c8686;
-  color: #d9d9d9;
+  color: #e0e0e0;
 }
 /* line 4, ../dev/sass/_mixin.scss */
 footer.bottom a:hover {
@@ -110,7 +110,7 @@ footer.bottom span#copyright {
 /* line 91, ../dev/sass/_vpr.scss */
 #underwriter p a {
   border-bottom: 2px solid #e6e6e6;
-  color: #828588;
+  color: #707376;
 }
 /* line 14, ../dev/sass/_mixin.scss */
 #underwriter p a:hover {
@@ -3486,68 +3486,78 @@ blockquote h3 {
   color: #c7341f;
 }
 
-/* line 34, ../dev/sass/style.scss */
-svg.map {
-  border: 1px solid black;
-  margin: 20px auto;
-  display: block;
-  background: #3f4444;
-}
-
-/* line 41, ../dev/sass/style.scss */
-ul {
-  text-align: center;
-}
-
-/* line 46, ../dev/sass/style.scss */
-svg.chart {
-  display: block;
-  margin: 20px auto;
-  border: 1px solid #75787b;
-}
-/* line 50, ../dev/sass/style.scss */
-svg.chart .bar {
-  fill: steelblue;
-}
-/* line 54, ../dev/sass/style.scss */
-svg.chart .axis text {
-  font: 10px sans-serif;
-}
-/* line 59, ../dev/sass/style.scss */
-svg.chart .axis path,
-svg.chart .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-/* line 65, ../dev/sass/style.scss */
-svg.chart .x.axis path {
-  display: none;
-}
-
-/* line 71, ../dev/sass/style.scss */
-.vermont h3, .northern_new_england h3, .nationwide h3 {
+/* line 35, ../dev/sass/style.scss */
+.vermont h3, .northern_new_england h3, .nation h3 {
   text-align: center;
   font-size: 2em;
   margin-bottom: 20px;
 }
+/* line 40, ../dev/sass/style.scss */
+.vermont p.section_explanation, .northern_new_england p.section_explanation, .nation p.section_explanation {
+  font-size: 20px;
+  font-weight: 400;
+  color: #75787b;
+  margin-top: 30px;
+}
+/* line 45, ../dev/sass/style.scss */
+.vermont p.section_explanation strong, .northern_new_england p.section_explanation strong, .nation p.section_explanation strong {
+  color: #585e5e;
+}
 
-/* line 79, ../dev/sass/style.scss */
+/* line 52, ../dev/sass/style.scss */
 .vermont img.vt-small-mult {
   margin: 0 auto;
 }
 
-/* line 85, ../dev/sass/style.scss */
+/* line 58, ../dev/sass/style.scss */
+.northern_new_england svg.chart {
+  display: block;
+  margin: 0 auto;
+}
+/* line 61, ../dev/sass/style.scss */
+.northern_new_england svg.chart .bar {
+  fill: steelblue;
+}
+/* line 65, ../dev/sass/style.scss */
+.northern_new_england svg.chart .axis text {
+  font: 10px sans-serif;
+}
+/* line 70, ../dev/sass/style.scss */
+.northern_new_england svg.chart .axis path,
+.northern_new_england svg.chart .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+/* line 76, ../dev/sass/style.scss */
+.northern_new_england svg.chart .x.axis path {
+  display: none;
+}
+/* line 80, ../dev/sass/style.scss */
+.northern_new_england table {
+  margin-bottom: 3px;
+}
+/* line 81, ../dev/sass/style.scss */
+.northern_new_england table td {
+  text-align: right;
+}
+/* line 84, ../dev/sass/style.scss */
+.northern_new_england table td:first-child {
+  text-align: left;
+}
+/* line 89, ../dev/sass/style.scss */
+.northern_new_england .table_disclaimer {
+  font-size: 12px;
+  color: #8f9294;
+  padding-left: 5px;
+}
+
+/* line 96, ../dev/sass/style.scss */
+.nation {
+  margin-bottom: 40px;
+}
+/* line 97, ../dev/sass/style.scss */
 .nation h4 {
   text-align: center;
   margin-bottom: 30px;
-}
-
-/* line 92, ../dev/sass/style.scss */
-table td {
-  text-align: right;
-}
-/* line 95, ../dev/sass/style.scss */
-table td:first-child {
-  text-align: left;
 }

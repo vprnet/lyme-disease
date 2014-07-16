@@ -4,7 +4,7 @@ GND.counties = {};
 
 GND.loadAllData = function(error, chartData, vt, mapData) {
     GND.chart.data = chartData;
-    GND.chart.init('New England', chartData);
+    GND.chart.init('Northern New England', chartData);
     GND.counties.vt = vt;
     GND.counties.data = mapData;
     GND.counties.init(vt, mapData);
@@ -27,9 +27,23 @@ GND.chart.margin = {
     'left': 40
 };
 
+GND.chart.divWidth = $('div.chart_div').width();
+if (GND.chart.divWidth > 450) {
+    GND.chart.width = 450;
+    GND.chart.height = 450;
+} else if (GND.chart.divWidth > 344) {
+    GND.chart.width = 340;
+    GND.chart.height = 360;
+} else {
+    GND.chart.width = GND.chart.divWidth - 30;
+    GND.chart.height = GND.chart.divWidth;
+}
+
+
+
 GND.chart.options = {
-    'width': 450 - GND.chart.margin.left - GND.chart.margin.right,
-    'height': 450 - GND.chart.margin.top - GND.chart.margin.bottom
+    'width': GND.chart.width - GND.chart.margin.left - GND.chart.margin.right,
+    'height': GND.chart.height - GND.chart.margin.top - GND.chart.margin.bottom
 };
 
 GND.chart.x = d3.scale.ordinal()
@@ -55,6 +69,7 @@ GND.chart.base = d3.select(".chart")
     .attr("height", GND.chart.options.height + GND.chart.margin.top +
         GND.chart.margin.bottom)
     .append("g")
+        .attr("class", "chart_box")
         .attr("transform", "translate(" + GND.chart.margin.left +
             "," + GND.chart.margin.top + ")");
 
@@ -63,15 +78,19 @@ GND.chart.init = function(state, data) {
     data.Connecticut.cases = data.Connecticut.cases.slice(4);
 
     if (typeof state === 'undefined') {
-        state = 'New England';
+        state = 'Northern New England';
     }
 
-    GND.chart.x.domain(GND.chart.domain.slice(4));
+    GND.chart.x.domain(GND.chart.domain);
 
     data = data[state].cases;
+    var newData = [];
+    for (i = 0; i < data.length; i++) {
+        newData.push({'year': GND.chart.x.domain()[i],
+            'cases': data[i]});
+    }
 
-
-    GND.chart.y.domain([0, d3.max(data, function(d) { return d; })]);
+    GND.chart.y.domain([0, d3.max(newData, function(d) { return parseInt(d.cases, 10); })]);
 
     GND.chart.base.append("g")
         .attr("class", "x axis")
@@ -83,22 +102,20 @@ GND.chart.init = function(state, data) {
         .call(GND.chart.yAxis);
 
     GND.chart.base.selectAll(".bar")
-            .data(data, function(d,i) { return GND.chart.x.domain()[i]; })
+            .data(newData, function(d,i) { return d.year; })
         .enter().append('rect')
             .attr("class", "bar")
             .attr("x", function(d,i) {
-                return GND.chart.x(GND.chart.x.domain()[i]);
+                return GND.chart.x(d.year);
             })
-            .attr("y", function(d) { return GND.chart.y(d); })
+            .attr("y", function(d) { return GND.chart.y(d.cases); })
             .attr("height", function(d) {
-                return GND.chart.options.height - GND.chart.y(d);
+                return GND.chart.options.height - GND.chart.y(d.cases);
             })
             .attr("width", GND.chart.x.rangeBand());
 };
 
 GND.chart.update = function(state) {
-
-
     if (state === 'New England' || state === 'Connecticut') {
         GND.chart.x.domain(GND.chart.domain.slice(4));
     } else {
@@ -124,7 +141,7 @@ GND.chart.update = function(state) {
         .call(GND.chart.xAxis);
 
     var bars = GND.chart.base.selectAll('.bar')
-        .data(newData, function(d) { return d.year; });
+        .data(newData, function(d, i) { return d.year; });
 
     bars
         .transition()
@@ -164,6 +181,7 @@ GND.chart.update = function(state) {
 
 
 GND.chart.selectorMap = {
+    'North': 'Northern New England',
     'All': 'New England',
     'VT': 'Vermont',
     'NH': 'New Hampshire',
@@ -173,9 +191,10 @@ GND.chart.selectorMap = {
     'RI': 'Rhode Island'
 };
 
-$('ul.chart_selector li').on('click', function() {
+$('div.chart_selector button').on('click', function() {
     var state = GND.chart.selectorMap[$(this).text()];
     GND.chart.update(state);
+    $('h4.chart_label').text(GND.chart.selectorMap[$(this).text()]);
 });
 
 function type(d) {

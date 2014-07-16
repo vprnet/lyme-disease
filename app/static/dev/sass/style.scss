@@ -31,47 +31,20 @@ blockquote {
     }
 }
 
-svg.map {
-    border: 1px solid black;
-    margin: 20px auto;
-    display: block;
-    background: $black;
-}
-
-ul {
-    text-align: center;
-}
-
-
-svg.chart {
-    display: block;
-    margin: 20px auto;
-    border: 1px solid $gray;
-    .bar {
-        fill: steelblue;
-    }
-
-    .axis text {
-        font: 10px sans-serif;
-    }
-
-    .axis path,
-    .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-    }
-
-    .x.axis path {
-        display: none;
-    }
-}
-
-.vermont, .northern_new_england, .nationwide {
+.vermont, .northern_new_england, .nation {
     h3 {
         text-align: center;
         font-size: 2em;
         margin-bottom: 20px;
+    }
+    p.section_explanation {
+        font-size: 20px;
+        font-weight: 400;
+        color: $gray;
+        margin-top: 30px;
+        strong {
+            color: lighten($black, 10%);
+        }
     }
 }
 
@@ -81,18 +54,50 @@ svg.chart {
     }
 }
 
+.northern_new_england {
+    svg.chart {
+        display: block;
+        margin: 0 auto;
+        .bar {
+            fill: steelblue;
+        }
+
+        .axis text {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .x.axis path {
+            display: none;
+        }
+    }
+    table {
+        td {
+            text-align: right;
+        }
+        td:first-child {
+            text-align: left;
+        }
+        margin-bottom: 3px;
+    }
+    .table_disclaimer {
+        font-size: 12px;
+        color: lighten($gray, 10%);
+        padding-left: 5px;
+    }
+}
+
 .nation {
     h4 {
         text-align: center;
         margin-bottom: 30px;
     }
+    margin-bottom: 40px;
 }
 
-table {
-    td {
-        text-align: right;
-    }
-    td:first-child {
-        text-align: left;
-    }
-}

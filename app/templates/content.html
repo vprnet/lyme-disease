@@ -10,10 +10,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="intro_copy col-md-8 col-lg-9">
-            <p>Forty years ago Lyme Disease didn't even have a name. Today, the neurodegenerative disease infects up to 300,000 annually and has greatly expanded its range beyond the small Connecticut town where it was first identified in 1975. While the data doesn't go that far back&mdash;and the <a href="http://www.cdc.gov/media/releases/2013/p0819-lyme-disease.html" alt="Link to CDC press release containing infection estimates">CDC estimates</a> that reported cases represent only 10% of the total number of infections&mdash;we are nonetheless left with an alarming picture of expanded range and skyrocketing infection rates over the last fifteen years. Nowhere is this expansion more evident than in <span class="stronger">Northern New England, home to the highest incident rates and fastest growing infection rates in the nation.</span></p>
+        <div class="intro_copy col-md-8">
+            <p>Forty years ago Lyme Disease didn't even have a name. Today, the tick-borne neurodegenerative disease infects up to 300,000 annually and has greatly expanded its range beyond the small Connecticut town where it was first identified in 1975. While the data doesn't go that far back&mdash;and the <a href="http://www.cdc.gov/media/releases/2013/p0819-lyme-disease.html" alt="Link to CDC press release containing infection estimates">CDC estimates</a> that reported cases represent only 10% of the total number of infections&mdash;we are nonetheless left with an alarming picture of expanded range and skyrocketing infection rates over the last fifteen years. Nowhere is this expansion more evident than in <span class="stronger">Northern New England, home to the highest incident rates and fastest growing infection rates in the nation.</span></p>
         </div>
-        <div class="col-md-4 col-lg-3">
+        <div class="col-md-4">
             {% include "_underwriter.html" %}
         </div>
     </div>
@@ -28,36 +28,52 @@
     <div class="northern_new_england row">
         <div class="col-xs-12">
             <h3>...And In The Rest Of Northern New England</h3>
-            <ul class="chart_selector list-inline">
-                <li>All</li>
-                <li>VT</li>
-                <li>NH</li>
-                <li>ME</li>
-                <li>MA</li>
-                <li>CT</li>
-                <li>RI</li>
-            </ul>
-            <svg class="chart"></svg>
-            <div class="col-md-6">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <th>State</th>
-                        <th>Incident Rate (2012)</th>
-                        <th>Growth Rate</th>
-                        <th>1999 Cases</th>
-                        <th>2012 Cases</th>
-                    </thead>
-                    {% for row in summary_statistics %}
-                    <tr>
-                        <td>{{ row.0 }}</td>
-                        <td>{{ row.1 }}</td>
-                        <td>{{ row.2 }}</td>
-                        <td>{{ row.3 }}</td>
-                        <td>{{ row.4 }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                <p class="table_dislaimer">*Reliable data from Connecticut prior to 2003 is not available.</p>
+            <div class="data_container row">
+                <div class="chart_div col-sm-6">
+                    <h4 class="chart_label">Northern New England</h4>
+                    <svg class="chart"></svg>
+                    <div class="chart_selector btn-group">
+                        <button type="button" class="btn btn-default">North</button>
+                        <button type="button" class="btn btn-default">VT</button>
+                        <button type="button" class="btn btn-default">NH</button>
+                        <button type="button" class="btn btn-default">ME</button>
+                        <button type="button" class="btn btn-default">MA</button>
+                        <button type="button" class="btn btn-default">CT</button>
+                        <button type="button" class="btn btn-default">RI</button>
+                        <button type="button" class="btn btn-default">All</button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <th>State</th>
+                            <th>Incident Rate (2012)</th>
+                            <th>Growth Rate</th>
+                            <th>1999 Cases</th>
+                            <th>2012 Cases</th>
+                        </thead>
+                        {% for row in summary_statistics %}
+                        <tr>
+                            <td>{{ row.0 }}</td>
+                            <td>{{ row.1 }}</td>
+                            <td>{{ row.2 }}</td>
+                            <td>{{ row.3 }}</td>
+                            <td>{{ row.4 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <p class="table_disclaimer">*Reliable data from Connecticut prior to 2003 is not available.</p>
+                    <h5>Definitions</h5>
+                    <h6>Incident Rate</h6>
+                    <p class="definition">Confirmed cases per 100,000 population</p>
+                    <h6>Growth Rate</h6>
+                    <p class="definition">The <a href="http://en.wikipedia.org/wiki/Exponential_growth" alt="definiton of exponential growth rate">exponential growth rate</a>. Solve for r in x<sub>t</sub> = x<sub>0</sub>(1 + r)<sup>t</t></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                    <p class="section_explanation"><strong>New Hampshire</strong> has been hit the  hardest in the last 15 years with the highest incident rate and growth rate of any state in the country. <strong>Maine</strong> and <strong>Vermont</strong> follow close behind with the second and third highest rates. <strong>Rhode Island</strong> is the only state in New England to see its infection rates go down.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -83,6 +99,11 @@
                 <div class="col-sm-6">
                     <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-0711.png') }}" alt="Lyme Disease cases nationwide from 2007-2011">
                     <h4>2007-2011</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                    <p class="section_explanation">Lyme Disease is largely restricted to the <strong>Northeast</strong>, the <strong>Mid-Atlantic</strong> and the <strong>Upper Midwest</strong>, with <a href="http://www.cdc.gov/Lyme/stats/" alt="Lyme Disease stats from the CDC">95% of cases coming from just 13 states</a>. A number of factors have contributed to the deer tick's expanded range including <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2582486/" alt="Study on the impact of climate change">climate change</a> and <a href="http://www.nsf.gov/news/special_reports/ecoinf/lyme.jsp" alt="National Science foundation article explaining the role of forest fragmentation in the increasing number of cases">forest fragmentation</a>.</p>
                 </div>
             </div>
         </div>
