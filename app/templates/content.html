@@ -22,6 +22,7 @@
     <div class="northern_new_england row">
         <div class="col-xs-12">
             <h3>Northern New England: From (Near) Zero To Endemic</h3>
+            <p class="section_explanation"><strong>New Hampshire</strong> has been hit the  hardest in the last 15 years with the highest incident and growth rates of any state in the country, while <strong>Massachusetts</strong> has by far the most cases each year in the region. <strong>Rhode Island</strong> is the only state in New England to see its growth rate go down and it has by far the fewest number of cases of all the New England states.</p>
             <div class="data_container row">
                 <div class="chart_div col-sm-6">
                     <h4 class="chart_label">Northern New England</h4>
@@ -64,27 +65,29 @@
                     <p class="definition">The <a href="http://en.wikipedia.org/wiki/Exponential_growth" alt="definiton of exponential growth rate">exponential growth rate</a>. Solve for r in x<sub>t</sub> = x<sub>0</sub>(1 + r)<sup>t</t></p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-                    <p class="section_explanation"><strong>New Hampshire</strong> has been hit the  hardest in the last 15 years with the highest incident rate and growth rate of any state in the country. <strong>Maine</strong> and <strong>Vermont</strong> follow close behind with the second and third highest rates. <strong>Rhode Island</strong> is the only state in New England to see its infection rates go down.</p>
-                </div>
-            </div>
         </div>
     </div>
     <hr>
     <div class="vermont row">
         <div class="col-xs-12">
-            <h3>Vermont: A Sign Of Things To Come</h3>
-            <img class="vt-small-mult img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-by-county-vt.png') }}" alt="Lyme disease in vermont by county over time">
+            <h3>Vermont: Facing A New Reality</h3>
+            <p class="section_explanation">Vermont's total number of cases doesn't compare to some of it's more populous neighbors, but with the <strong>third highest incident and growth rates in the nation,</strong> Vermonters now need to be tick aware and learn both how to <a href="http://www.cdc.gov/Ticks/avoid/index.html">avoid being bitten</a> and <a href="http://digital.vpr.net/post/what-do-when-tick-bites" alt="VPR article explaining what to do when bitten by a tick">what to do in the event of a bite</a>.</p>
         </div>
-        <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-            <p class="section_explanation">Vermont's recent history with Lyme Disease is representative of the broader trends</p>
+        <div class="col-xs-12">
+            <img class="vt-small-mult img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-by-county-vt.png') }}" alt="Lyme disease in vermont by county over time">
         </div>
     </div>
     <hr>
     <div class="row nation">
         <div class="col-xs-12">
-            <h3>What About The Rest Of The Country?</h3>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>What About The Rest Of The Country?</h3>
+                    <p class="section_explanation">Lyme Disease is largely restricted to the <strong>Northeast</strong>, the <strong>Mid-Atlantic</strong> and the <strong>Upper Midwest</strong>, with <a href="http://www.cdc.gov/Lyme/stats/" alt="Lyme Disease stats from the CDC">95% of cases coming from just 13 states</a>. <strong>Pennsylvania</strong> has the most cases every year with over 5,000 probable cases in 2012.</p>
+                    <p class="section_explanation">While the deer tick's range extends into the <strong>South</strong>, <a href="http://www.cdc.gov/ticks/geographic_distribution.html#blacklegged" alt="Explanation of disconnect between black legged ticks range and the Lyme Disease map">due to different feeding habits</a>, Lyme Disease hasn't proliferated in the region the way that it has in the Northeast and Upper Midwest.</p>
+                    <p class="section_explanation">Since the data on reported cases is sourced by state of residence, not state of exposure, it is difficult to determine the exact origin of many of the cases. It is reasonable to assume that <a href="http://www.cdc.gov/lyme/stats/survfaq.html" alt="CDC note on data reliability">over-reporting occurs in the disease's non endemic areas</a>, such as the <strong>West</strong>.</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-6">
                     <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-9296.png') }}" alt="Lyme Disease cases nationwide from 1992-1996">
@@ -103,11 +106,6 @@
                 <div class="col-sm-6">
                     <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-0711.png') }}" alt="Lyme Disease cases nationwide from 2007-2011">
                     <h4>2007-2011</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-                    <p class="section_explanation">Lyme Disease is largely restricted to the <strong>Northeast</strong>, the <strong>Mid-Atlantic</strong> and the <strong>Upper Midwest</strong>, with <a href="http://www.cdc.gov/Lyme/stats/" alt="Lyme Disease stats from the CDC">95% of cases coming from just 13 states</a>. Despite
                 </div>
             </div>
         </div>

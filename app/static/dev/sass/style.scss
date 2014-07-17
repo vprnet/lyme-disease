@@ -24,12 +24,17 @@ blockquote {
         font-size: 1.45em;
         font-weight: 400;
         line-height: 1.3em;
+        color: darken($gray, 10%);
     }
     span.stronger {
         font-weight: 700;
-        color: darken($red, 10%);
+        color: darken($orange, 0%);
         a {
-            color: darken($red, 10%) !important;
+            color: inherit !important;
+            border-color: lighten($orange, 35%);
+            &:hover {
+                color: lighten($blue, 10%) !important;
+            }
         }
     }
 }
@@ -43,8 +48,7 @@ blockquote {
     p.section_explanation {
         font-size: 20px;
         font-weight: 400;
-        color: $gray;
-        margin-top: 30px;
+        color: darken($gray, 10%);
         strong {
             color: lighten($black, 10%);
         }
@@ -100,6 +104,9 @@ blockquote {
     h4 {
         text-align: center;
         margin-bottom: 30px;
+        font-weight: 700;
+        font-size: 24px;
+        color: darken($gray, 20%);
     }
     margin-bottom: 40px;
 }

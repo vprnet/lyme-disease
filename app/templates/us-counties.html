@@ -7,7 +7,7 @@ body {
 
 .land {
   fill: white;
-  stroke: #bbb;
+  stroke: #fff;
 }
 
 .counties {
@@ -52,7 +52,7 @@ svg {
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script>
-var width = 960,
+var width = 800,
     height = 500;
 
 var projection = d3.geo.albersUsa()
@@ -99,12 +99,21 @@ function ready(error, us, data) {
                     if (cases) {
                         return quantize(cases);
                     } else {
-                        return '#f8f8f8';
+                        return "#ccc";
                     }
                     break;
                 }
             }
             return '#999';
+        })
+        .style("display", function(d) {
+            if (d.id.toString().length === 4 && d.id.toString()[0] === "2") {
+                return "none";
+            } else if (d.id.toString().length === 5 && d.id.toString().slice(0,2) === "15") {
+                return "none";
+            } else {
+                return "block";
+            }
         });
 
     svg.insert("path", ".graticule")
@@ -132,7 +141,7 @@ var chooseRange = function(data) {
                         if (cases) {
                             return quantize(cases);
                         } else {
-                            return '#f8f8f8';
+                            return '#ccc';
                         }
                         break;
                     }

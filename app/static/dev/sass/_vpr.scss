@@ -13,7 +13,12 @@ $laptop: 1000px;
 $big-screen: 1200px;
 
 a {
-    @include lt_link(darken($gray, 5%), white, 2px);
+    color: inherit;
+    border-bottom: 3px solid lighten($blue, 35%);
+    &:hover {
+        text-decoration: none;
+        color: $blue;
+    }
 }
 
 html, body {
