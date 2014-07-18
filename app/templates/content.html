@@ -22,27 +22,34 @@
     <div class="northern_new_england row">
         <div class="col-xs-12">
             <h3>Northern New England: From (Near) Zero To Endemic</h3>
-            <p class="section_explanation"><strong>New Hampshire</strong> has been hit the  hardest in the last 15 years with the highest incident and growth rates of any state in the country, while <strong>Massachusetts</strong> has by far the most cases each year in the region. <strong>Rhode Island</strong> is the only state in New England to see its growth rate go down and it has by far the fewest number of cases of all the New England states.</p>
+            <div class="section_explanation">
+                <p><strong>New Hampshire</strong> has been hit the  hardest in the last 15 years with the highest incident and growth rates of any state in the country, while <strong>Massachusetts</strong> has by far the most cases each year in the region. <strong>Rhode Island</strong> is the only state in New England to see its growth rate go down and it has by far the fewest number of cases of all the New England states.</p>
+            </div>
             <div class="data_container row">
-                <div class="chart_div col-sm-6">
+                <div class="chart_div col-md-6">
                     <h4 class="chart_label">Northern New England</h4>
                     <svg class="chart"></svg>
-                    <div class="chart_selector btn-group">
-                        <button type="button" class="btn btn-default">North</button>
-                        <button type="button" class="btn btn-default">VT</button>
-                        <button type="button" class="btn btn-default">NH</button>
-                        <button type="button" class="btn btn-default">ME</button>
-                        <button type="button" class="btn btn-default">MA</button>
-                        <button type="button" class="btn btn-default">CT</button>
-                        <button type="button" class="btn btn-default">RI</button>
-                        <button type="button" class="btn btn-default">All</button>
+                    <div class="chart_prompt">
+                        <p class="choose_region">Choose A Region To Graph:</p>
+                        <div class="chart_selector btn-group">
+                            <button type="button" class="btn btn-default">NNE</button>
+                            <button type="button" class="btn btn-default">VT</button>
+                            <button type="button" class="btn btn-default">NH</button>
+                            <button type="button" class="btn btn-default">ME</button>
+                            <button type="button" class="btn btn-default">MA</button>
+                            <button type="button" class="btn btn-default">CT</button>
+                            <button type="button" class="btn btn-default">RI</button>
+                            <button type="button" class="btn btn-default">All</button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <table class="table table-bordered table-striped">
+                <hr class="visible-sm">
+                <div class="col-md-6">
+                    <h4 class="table_label">New England Statistics</h4>
+                    <table class="table table-bordered table-striped table-condensed">
                         <thead>
                             <th>State</th>
-                            <th>Incident Rate (2012)</th>
+                            <th>Incident Rate</th>
                             <th>Growth Rate</th>
                             <th>1999 Cases</th>
                             <th>2012 Cases</th>
@@ -58,35 +65,39 @@
                         {% endfor %}
                     </table>
                     <p class="table_disclaimer">*Reliable data from Connecticut prior to 2003 is not available.</p>
-                    <h5>Definitions</h5>
-                    <h6>Incident Rate</h6>
-                    <p class="definition">Confirmed cases per 100,000 population based on 2012 data</p>
-                    <h6>Growth Rate</h6>
-                    <p class="definition">The <a href="http://en.wikipedia.org/wiki/Exponential_growth" alt="definiton of exponential growth rate">exponential growth rate</a>. Solve for r in x<sub>t</sub> = x<sub>0</sub>(1 + r)<sup>t</t></p>
+                    <div class="definitions">
+                        <h5>Definitions</h5>
+                        <h6>Incident Rate</h6>
+                        <p class="definition">Confirmed cases per 100,000 population based on 2012 data</p>
+                        <h6>Growth Rate</h6>
+                        <p class="definition">The <a href="http://en.wikipedia.org/wiki/Exponential_growth" alt="definiton of exponential growth rate">exponential growth rate</a>. Connecticut's growth rate was found for 2003-2012, all other states from 1999-2012.</p>
+                    </div>
                 </div>
             </div>
+            <p class="download_data"><a href="{{ url_for('static', filename='data/vpr-lyme-disease-new-england.csv' )}}" alt="CDC Lyme data by state">Download data for this section (CSV)</a></p>
         </div>
     </div>
     <hr>
     <div class="vermont row">
         <div class="col-xs-12">
             <h3>Vermont: Facing A New Reality</h3>
-            <p class="section_explanation">Vermont's total number of cases doesn't compare to some of it's more populous neighbors, but with the <strong>third highest incident and growth rates in the nation,</strong> Vermonters now need to be tick aware and learn both how to <a href="http://www.cdc.gov/Ticks/avoid/index.html">avoid being bitten</a> and <a href="http://digital.vpr.net/post/what-do-when-tick-bites" alt="VPR article explaining what to do when bitten by a tick">what to do in the event of a bite</a>.</p>
+            <div class="section_explanation">
+                <p>Vermont's total number of cases doesn't compare to some of it's more populous neighbors, but with the <strong>third highest incident and growth rates in the nation,</strong> Vermonters now need to be tick aware and learn both how to <a href="http://www.cdc.gov/Ticks/avoid/index.html">avoid being bitten</a> and <a href="http://digital.vpr.net/post/what-do-when-tick-bites" alt="VPR article explaining what to do when bitten by a tick">what to do in the event of a bite</a>.</p>
+            </div>
         </div>
         <div class="col-xs-12">
             <img class="vt-small-mult img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-by-county-vt.png') }}" alt="Lyme disease in vermont by county over time">
+        <p class="download_data"><a href="{{ url_for('static', filename='data/lyme-vt-counties.csv' )}}" alt="Vermont Department Of Health lyme data by county">Download data for this section (CSV)</a></p>
         </div>
     </div>
     <hr>
     <div class="row nation">
         <div class="col-xs-12">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h3>What About The Rest Of The Country?</h3>
-                    <p class="section_explanation">Lyme Disease is largely restricted to the <strong>Northeast</strong>, the <strong>Mid-Atlantic</strong> and the <strong>Upper Midwest</strong>, with <a href="http://www.cdc.gov/Lyme/stats/" alt="Lyme Disease stats from the CDC">95% of cases coming from just 13 states</a>. <strong>Pennsylvania</strong> has the most cases every year with over 5,000 probable cases in 2012.</p>
-                    <p class="section_explanation">While the deer tick's range extends into the <strong>South</strong>, <a href="http://www.cdc.gov/ticks/geographic_distribution.html#blacklegged" alt="Explanation of disconnect between black legged ticks range and the Lyme Disease map">due to different feeding habits</a>, Lyme Disease hasn't proliferated in the region the way that it has in the Northeast and Upper Midwest.</p>
-                    <p class="section_explanation">Since the data on reported cases is sourced by state of residence, not state of exposure, it is difficult to determine the exact origin of many of the cases. It is reasonable to assume that <a href="http://www.cdc.gov/lyme/stats/survfaq.html" alt="CDC note on data reliability">over-reporting occurs in the disease's non endemic areas</a>, such as the <strong>West</strong>.</p>
-                </div>
+            <h3>What About The Rest Of The Country?</h3>
+            <div class="section_explanation">
+                <p>Lyme Disease is largely restricted to the <strong>Northeast</strong>, the <strong>Mid-Atlantic</strong> and the <strong>Upper Midwest</strong>, with <a href="http://www.cdc.gov/Lyme/stats/" alt="Lyme Disease stats from the CDC">95% of cases coming from just 13 states</a>. <strong>Pennsylvania</strong> has the most cases every year with over 5,000 probable cases in 2012. Outside of the Northeast cluster <strong>Wisconsin</strong> has the largest number of probable cases in 2012 with 1766.</p>
+                <p>While the deer tick's range extends into the <strong>South,</strong> Lyme Disease hasn't proliferated in the region the way that it has in the Northeast and Upper Midwest. This is <a href="http://www.cdc.gov/ticks/geographic_distribution.html#blacklegged" alt="Explanation of disconnect between black legged ticks range and the Lyme Disease map">due to different feeding habits</a> of the ticks in that part of their range.</p>
+                <p>Since the data on reported cases is sourced by state of residence, not state of exposure, it is difficult to determine the exact origin of many of the cases. It is reasonable to assume that <a href="http://www.cdc.gov/lyme/stats/survfaq.html" alt="CDC note on data reliability">over-reporting occurs in the disease's non-endemic areas</a>, such as the <strong>West</strong>.</p>
             </div>
             <div class="row">
                 <div class="col-sm-6">
@@ -107,6 +118,19 @@
                     <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-0711.png') }}" alt="Lyme Disease cases nationwide from 2007-2011">
                     <h4>2007-2011</h4>
                 </div>
+            </div>
+            <p class="download_data"><a href="{{ url_for('static', filename='data/lyme-disease-by-county.csv' )}}" alt="CDC lyme disease by county data">Download data for this section (CSV)</a></p>
+        </div>
+    </div>
+    <hr>
+    <div class="row data_disclaimer">
+        <div class="col-xs-12">
+            <h3>A Note About The Data</h3>
+            <div class="section_explanation">
+                <p>Due to reporting methods and the limitations of surveillance data, discrepancies between figures exist, even in this report, specifically between Vermont case numbers between the New England section and the Vermont section.</p>
+                <p>In the table of New England states, the number of cases in 2012 is reported as 386 while in the map of Vermont counties, the 2012 figure is listed as 367. The figure in the table represents the number of <em>confirmed</em> cases in Vermont, regardless of origin. In the map of Vermont, the figure used is the number of <em>confirmed and probable</em> cases of Vermont origin.</p>
+                <p>Since more accurate information eliminating cases of unknown origin was available for Vermont, that data was used to provide the most accurate picture of Vermont's Lyme Disease statistics. The same data wasn't available for all New England states, so in comparing Vermont to the other New England states, the more general figures were used.</p>
+                <p>For more on the complexities and limitations of this data, see <a href="http://www.cdc.gov/lyme/stats/survfaq.html" alt="CDC explanation of the limitations of surveillance data">this CDC explanation</a>.</p>
             </div>
         </div>
     </div>

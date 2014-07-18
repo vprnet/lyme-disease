@@ -24,20 +24,12 @@ GND.chart.margin = {
     'top': 20,
     'right': 10,
     'bottom': 30,
-    'left': 40
+    'left': 70
 };
 
 GND.chart.divWidth = $('div.chart_div').width();
-if (GND.chart.divWidth > 450) {
-    GND.chart.width = 450;
-    GND.chart.height = 450;
-} else if (GND.chart.divWidth > 344) {
-    GND.chart.width = 340;
-    GND.chart.height = 360;
-} else {
-    GND.chart.width = GND.chart.divWidth - 30;
-    GND.chart.height = GND.chart.divWidth;
-}
+GND.chart.width = GND.chart.divWidth - 30;
+GND.chart.height = (GND.chart.divWidth < 500) ? GND.chart.divWidth : 500;
 
 
 
@@ -113,6 +105,13 @@ GND.chart.init = function(state, data) {
                 return GND.chart.options.height - GND.chart.y(d.cases);
             })
             .attr("width", GND.chart.x.rangeBand());
+
+    GND.chart.base.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -(GND.chart.height / 2) - 20)
+        .attr("y", -50)
+        .text("Probable Cases");
+
 };
 
 GND.chart.update = function(state) {
@@ -181,7 +180,7 @@ GND.chart.update = function(state) {
 
 
 GND.chart.selectorMap = {
-    'North': 'Northern New England',
+    'NNE': 'Northern New England',
     'All': 'New England',
     'VT': 'Vermont',
     'NH': 'New Hampshire',

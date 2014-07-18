@@ -14,7 +14,7 @@ $big-screen: 1200px;
 
 a {
     color: inherit;
-    border-bottom: 3px solid lighten($blue, 35%);
+    border-bottom: 3px solid lighten($blue, 40%);
     &:hover {
         text-decoration: none;
         color: $blue;
@@ -51,18 +51,6 @@ html, body {
     }
     a {
         border: 0;
-    }
-    #navbar-title {
-        color: darken(white, 5%);
-        font-size: 26px;
-        font-weight: 400;
-        display: inline;
-        position: relative;
-        top: 6px;
-        left: 15px;
-        @media (max-width: $tablet) {
-            display: none;
-        }
     }
 }
 
@@ -103,22 +91,11 @@ footer.bottom {
 }
 
 #social-logos {
-    display: inline;
-    height: 40px;
-    width: 300px;
-    a {
-        float: right;
-        margin-top: 2px;
-        padding: 5px 0 5px 10px;
-        div {
-            background-size: 100%;
-        }
-        @media (max-width: $tablet) {
-            &:first-child {
-                margin-right: 15px;
-            }
-        }
-    }
+    float: right;
+    font-weight: 300;
+    font-size: 20px;
+    color: white;
+    padding-top: 8px;
 }
 
 @media (max-width: $tablet) {

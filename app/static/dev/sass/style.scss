@@ -10,16 +10,8 @@ h1 {
     margin-bottom: 30px;
 }
 
-blockquote {
-    padding-top: 0;
-    padding-bottom: 0;
-    h3 {
-        font-size: 32px;
-        margin-top: 0;
-    }
-}
-
 .intro_copy {
+    margin-bottom: 40px;
     p {
         font-size: 1.45em;
         font-weight: 400;
@@ -41,17 +33,24 @@ blockquote {
 
 .vermont, .northern_new_england, .nation {
     h3 {
-        text-align: center;
         font-size: 2em;
         margin-bottom: 20px;
     }
-    p.section_explanation {
-        font-size: 20px;
-        font-weight: 400;
-        color: darken($gray, 10%);
-        strong {
-            color: lighten($black, 10%);
+    div.section_explanation {
+        margin-bottom: 30px;
+        p {
+            font-size: 20px;
+            font-weight: 400;
+            color: darken($gray, 10%);
+            strong {
+                color: lighten($black, 10%);
+            }
         }
+    }
+    p.download_data {
+        margin-top: 20px;
+        text-align: right;
+        color: lighten($gray, 10%);
     }
 }
 
@@ -64,7 +63,7 @@ blockquote {
 .northern_new_england {
     svg.chart {
         display: block;
-        margin: 0 auto;
+        margin: 0 auto 10px;
         .bar {
             fill: steelblue;
         }
@@ -84,7 +83,16 @@ blockquote {
             display: none;
         }
     }
+    h4.chart_label {
+        text-align: center;
+        padding-left: 45px;
+    }
+    h4.table_label {
+        margin-bottom: 30px;
+        text-align: center;
+    }
     table {
+        font-size: 13px;
         td {
             text-align: right;
         }
@@ -97,6 +105,34 @@ blockquote {
         font-size: 12px;
         color: lighten($gray, 10%);
         padding-left: 5px;
+        margin-bottom: 30px;
+    }
+    .definitions {
+        h5 {
+            font-size: 18px;
+        }
+        h6 {
+            margin-bottom: 0;
+        }
+        p {
+            margin-top: 0;
+            color: $gray;
+        }
+    }
+    div.chart_prompt {
+        padding-right: 30px;
+        @media (max-width: $tablet) {
+            margin-bottom: 30px;
+        }
+        height: 100px;
+        p.choose_region {
+            font-weight: 500;
+            font-size: 20px;
+            text-align: right;
+        }
+        div.chart_selector {
+            float: right;
+        }
     }
 }
 
@@ -111,3 +147,10 @@ blockquote {
     margin-bottom: 40px;
 }
 
+.data_disclaimer {
+    font-size: 16px;
+    margin-bottom: 30px;
+    p {
+        color: $gray;
+    }
+}
