@@ -3428,161 +3428,235 @@ footer.bottom span#copyright {
 /* line 7, ../dev/sass/style.scss */
 h1 {
   font-size: 48px;
-  text-align: center;
   margin-bottom: 30px;
 }
+@media (min-width: 1000px) {
+  /* line 7, ../dev/sass/style.scss */
+  h1 {
+    font-size: 55px;
+  }
+}
+@media (min-width: 768px) {
+  /* line 7, ../dev/sass/style.scss */
+  h1 {
+    font-size: 36px;
+  }
+}
+@media (max-width: 768px) {
+  /* line 7, ../dev/sass/style.scss */
+  h1 {
+    font-size: 32px;
+  }
+}
 
-/* line 13, ../dev/sass/style.scss */
+/* line 21, ../dev/sass/style.scss */
 .intro_copy {
   margin-bottom: 40px;
 }
-/* line 15, ../dev/sass/style.scss */
+/* line 23, ../dev/sass/style.scss */
 .intro_copy p {
   font-size: 1.45em;
   font-weight: 400;
   line-height: 1.3em;
   color: #5c5e61;
 }
-/* line 21, ../dev/sass/style.scss */
+@media (max-width: 768px) {
+  /* line 23, ../dev/sass/style.scss */
+  .intro_copy p {
+    font-size: 1.3em;
+  }
+}
+/* line 32, ../dev/sass/style.scss */
 .intro_copy span.stronger {
   font-weight: 700;
   color: #ed8b00;
 }
-/* line 24, ../dev/sass/style.scss */
+/* line 35, ../dev/sass/style.scss */
 .intro_copy span.stronger a {
   color: inherit !important;
-  border-color: #ffd8a1;
+  border-color: #ffedd4;
 }
-/* line 27, ../dev/sass/style.scss */
+/* line 38, ../dev/sass/style.scss */
 .intro_copy span.stronger a:hover {
   color: #5d9be8 !important;
 }
 
-/* line 35, ../dev/sass/style.scss */
+/* line 46, ../dev/sass/style.scss */
 .vermont h3, .northern_new_england h3, .nation h3 {
-  font-size: 2em;
+  font-size: 2.5em;
   margin-bottom: 20px;
 }
-/* line 39, ../dev/sass/style.scss */
+@media (max-width: 1000px) {
+  /* line 46, ../dev/sass/style.scss */
+  .vermont h3, .northern_new_england h3, .nation h3 {
+    font-size: 2em;
+  }
+}
+/* line 53, ../dev/sass/style.scss */
 .vermont div.section_explanation, .northern_new_england div.section_explanation, .nation div.section_explanation {
   margin-bottom: 30px;
 }
-/* line 41, ../dev/sass/style.scss */
+/* line 55, ../dev/sass/style.scss */
 .vermont div.section_explanation p, .northern_new_england div.section_explanation p, .nation div.section_explanation p {
   font-size: 20px;
   font-weight: 400;
   color: #5c5e61;
 }
-/* line 45, ../dev/sass/style.scss */
+@media (max-width: 768px) {
+  /* line 55, ../dev/sass/style.scss */
+  .vermont div.section_explanation p, .northern_new_england div.section_explanation p, .nation div.section_explanation p {
+    font-size: 1.3em;
+  }
+}
+/* line 62, ../dev/sass/style.scss */
 .vermont div.section_explanation p strong, .northern_new_england div.section_explanation p strong, .nation div.section_explanation p strong {
   color: #585e5e;
 }
-/* line 50, ../dev/sass/style.scss */
+/* line 67, ../dev/sass/style.scss */
 .vermont p.download_data, .northern_new_england p.download_data, .nation p.download_data {
   margin-top: 20px;
   text-align: right;
   color: #8f9294;
 }
+/* line 72, ../dev/sass/style.scss */
+.vermont h4.title, .northern_new_england h4.title, .nation h4.title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
 
-/* line 58, ../dev/sass/style.scss */
+/* line 81, ../dev/sass/style.scss */
 .vermont img.vt-small-mult {
   margin: 0 auto;
 }
 
-/* line 64, ../dev/sass/style.scss */
+/* line 87, ../dev/sass/style.scss */
 .northern_new_england svg.chart {
   display: block;
   margin: 0 auto 10px;
 }
-/* line 67, ../dev/sass/style.scss */
+/* line 90, ../dev/sass/style.scss */
 .northern_new_england svg.chart .bar {
   fill: steelblue;
 }
-/* line 71, ../dev/sass/style.scss */
+/* line 94, ../dev/sass/style.scss */
 .northern_new_england svg.chart .axis text {
   font: 10px sans-serif;
 }
-/* line 76, ../dev/sass/style.scss */
+/* line 99, ../dev/sass/style.scss */
 .northern_new_england svg.chart .axis path,
 .northern_new_england svg.chart .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-/* line 82, ../dev/sass/style.scss */
+/* line 105, ../dev/sass/style.scss */
 .northern_new_england svg.chart .x.axis path {
   display: none;
 }
-/* line 86, ../dev/sass/style.scss */
+/* line 109, ../dev/sass/style.scss */
 .northern_new_england h4.chart_label {
   text-align: center;
   padding-left: 45px;
 }
-/* line 90, ../dev/sass/style.scss */
+/* line 113, ../dev/sass/style.scss */
 .northern_new_england h4.table_label {
   margin-bottom: 30px;
   text-align: center;
 }
-/* line 94, ../dev/sass/style.scss */
+/* line 117, ../dev/sass/style.scss */
 .northern_new_england table {
   font-size: 13px;
   margin-bottom: 3px;
 }
-/* line 96, ../dev/sass/style.scss */
+@media (min-width: 1200px), (min-width: 500px) and (max-width: 768px) {
+  /* line 117, ../dev/sass/style.scss */
+  .northern_new_england table {
+    font-size: 16px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1000px) {
+  /* line 117, ../dev/sass/style.scss */
+  .northern_new_england table {
+    font-size: 18px;
+  }
+}
+@media (max-width: 500px) {
+  /* line 117, ../dev/sass/style.scss */
+  .northern_new_england table {
+    font-size: 11px;
+  }
+}
+/* line 128, ../dev/sass/style.scss */
 .northern_new_england table td {
   text-align: right;
 }
-/* line 99, ../dev/sass/style.scss */
+/* line 131, ../dev/sass/style.scss */
 .northern_new_england table td:first-child {
   text-align: left;
 }
-/* line 104, ../dev/sass/style.scss */
+/* line 136, ../dev/sass/style.scss */
 .northern_new_england .table_disclaimer {
   font-size: 12px;
   color: #8f9294;
   padding-left: 5px;
   margin-bottom: 30px;
 }
-/* line 111, ../dev/sass/style.scss */
+/* line 143, ../dev/sass/style.scss */
 .northern_new_england .definitions h5 {
   font-size: 18px;
 }
-/* line 114, ../dev/sass/style.scss */
+/* line 146, ../dev/sass/style.scss */
 .northern_new_england .definitions h6 {
   margin-bottom: 0;
 }
-/* line 117, ../dev/sass/style.scss */
+/* line 149, ../dev/sass/style.scss */
 .northern_new_england .definitions p {
   margin-top: 0;
   color: #75787b;
 }
-/* line 122, ../dev/sass/style.scss */
+/* line 154, ../dev/sass/style.scss */
 .northern_new_england div.chart_prompt {
-  padding-right: 30px;
-  height: 100px;
+  width: 100%;
+  padding: 15px;
 }
 @media (max-width: 768px) {
-  /* line 122, ../dev/sass/style.scss */
+  /* line 154, ../dev/sass/style.scss */
   .northern_new_england div.chart_prompt {
     margin-bottom: 30px;
   }
 }
-/* line 128, ../dev/sass/style.scss */
+@media (min-width: 1000px) {
+  /* line 154, ../dev/sass/style.scss */
+  .northern_new_england div.chart_prompt {
+    margin-left: 25px;
+  }
+}
+/* line 163, ../dev/sass/style.scss */
 .northern_new_england div.chart_prompt p.choose_region {
   font-weight: 500;
-  font-size: 20px;
-  text-align: right;
+  font-size: 16px;
 }
-/* line 133, ../dev/sass/style.scss */
-.northern_new_england div.chart_prompt div.chart_selector {
-  float: right;
+@media (max-width: 500px) {
+  /* line 167, ../dev/sass/style.scss */
+  .northern_new_england div.chart_prompt div.chart_selector button.btn {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+}
+@media (min-width: 1000px) {
+  /* line 174, ../dev/sass/style.scss */
+  .northern_new_england hr.visible_touch {
+    display: none;
+  }
 }
 
-/* line 139, ../dev/sass/style.scss */
+/* line 181, ../dev/sass/style.scss */
 .nation {
   margin-bottom: 40px;
 }
-/* line 140, ../dev/sass/style.scss */
+/* line 182, ../dev/sass/style.scss */
 .nation h4 {
   text-align: center;
   margin-bottom: 30px;
@@ -3591,12 +3665,16 @@ h1 {
   color: #434547;
 }
 
-/* line 150, ../dev/sass/style.scss */
+/* line 192, ../dev/sass/style.scss */
 .data_disclaimer {
   font-size: 16px;
   margin-bottom: 30px;
 }
-/* line 153, ../dev/sass/style.scss */
+/* line 195, ../dev/sass/style.scss */
+.data_disclaimer h3 {
+  color: #5c5e61;
+}
+/* line 198, ../dev/sass/style.scss */
 .data_disclaimer p {
   color: #75787b;
 }

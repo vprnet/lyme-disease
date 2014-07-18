@@ -24,7 +24,7 @@ GND.chart.margin = {
     'top': 20,
     'right': 10,
     'bottom': 30,
-    'left': 70
+    'left': 60
 };
 
 GND.chart.divWidth = $('div.chart_div').width();

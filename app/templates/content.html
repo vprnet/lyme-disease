@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>Lyme Disease: The Quiet Epidemic</h1>
+            <h1>Lyme Disease:<br class="visible-xs" /> The Quiet Epidemic</h1>
         </div>
     </div>
     <div class="row">
@@ -29,7 +29,7 @@
                 <div class="chart_div col-md-6">
                     <h4 class="chart_label">Northern New England</h4>
                     <svg class="chart"></svg>
-                    <div class="chart_prompt">
+                    <div class="chart_prompt text-center">
                         <p class="choose_region">Choose A Region To Graph:</p>
                         <div class="chart_selector btn-group">
                             <button type="button" class="btn btn-default">NNE</button>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <hr class="visible-sm">
+                <hr class="visible_touch">
                 <div class="col-md-6">
                     <h4 class="table_label">New England Statistics</h4>
                     <table class="table table-bordered table-striped table-condensed">
@@ -86,6 +86,7 @@
             </div>
         </div>
         <div class="col-xs-12">
+            <h4 class="title">Probable Cases By County</h4>
             <img class="vt-small-mult img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-by-county-vt.png') }}" alt="Lyme disease in vermont by county over time">
         <p class="download_data"><a href="{{ url_for('static', filename='data/lyme-vt-counties.csv' )}}" alt="Vermont Department Of Health lyme data by county">Download data for this section (CSV)</a></p>
         </div>
@@ -100,6 +101,7 @@
                 <p>Since the data on reported cases is sourced by state of residence, not state of exposure, it is difficult to determine the exact origin of many of the cases. It is reasonable to assume that <a href="http://www.cdc.gov/lyme/stats/survfaq.html" alt="CDC note on data reliability">over-reporting occurs in the disease's non-endemic areas</a>, such as the <strong>West</strong>.</p>
             </div>
             <div class="row">
+                <h4 class="title">Confirmed Cases By County</h4>
                 <div class="col-sm-6">
                     <img class="img-responsive" src="{{ url_for('static', filename='img/vpr-lyme-9296.png') }}" alt="Lyme Disease cases nationwide from 1992-1996">
                     <h4>1992-1996</h4>
