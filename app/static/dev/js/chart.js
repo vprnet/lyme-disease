@@ -169,6 +169,8 @@ GND.chart.selectorMap = {
 };
 
 $('div.chart_selector button').on('click', function() {
+    $('div.chart_selector button.active').removeClass('active');
+    $(this).addClass('active');
     var state = GND.chart.selectorMap[$(this).text()];
     GND.chart.update(state);
     $('h4.chart_label').text(GND.chart.selectorMap[$(this).text()]);

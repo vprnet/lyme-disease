@@ -1,4 +1,4 @@
-//@import "bootstrap";
+@import "bootstrap";
 @import "mixin";
 @import "vpr";
 @import "vpr-svg";
@@ -31,10 +31,10 @@ h1 {
     }
     span.stronger {
         font-weight: 700;
-        color: darken($orange, 0%);
+        color: lighten($red, 5%);
         a {
             color: inherit !important;
-            border-color: lighten($orange, 45%);
+            border-color: lighten($red, 38%);
             &:hover {
                 color: lighten($blue, 10%) !important;
             }
@@ -72,7 +72,7 @@ h1 {
     h4.title {
         text-align: center;
         font-weight: 500;
-        font-size: 22px;
+        font-size: 2em;
         margin-bottom: 20px;
     }
 }
@@ -80,6 +80,11 @@ h1 {
 .vermont {
     img.vt-small-mult {
         margin: 0 auto;
+    }
+    p.data_disclaimer {
+        text-align: right;
+        font-size: 14px;
+        color: #999;
     }
 }
 
@@ -175,6 +180,9 @@ h1 {
         @media (min-width: $laptop) {
             display: none;
         }
+    }
+    button.active {
+        background: lighten($orange, 10%);
     }
 }
 

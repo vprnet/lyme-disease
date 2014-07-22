@@ -11,10 +11,12 @@
 
     svg.legend {
         padding-left: 120px;
+        margin-left: 27px;
     }
 
     text {
         fill: #999;
+        font-family: Helvetica;
     }
 
     text.year {
@@ -37,8 +39,8 @@
 </style>
 
 <body>
-<div id="maps"></div>
 <div id="legend"></div>
+<div id="maps"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/queue.v1.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -77,12 +79,12 @@ var makeLegend = function() {
         .attr("width", 1200)
         .attr("height", 100);
 
-    var w = 50,
+    var w = 60,
         h = 20;
 
     for (var i=0; i<colors.length; i++) {
         legend.append("rect")
-            .attr("x", (i * (w + 50)) + 50)
+            .attr("x", (i * (w + 60)) + 50)
             .attr("y", 10)
             .attr("width", w)
             .attr("height", h)
@@ -93,17 +95,17 @@ var makeLegend = function() {
         legend.append("text")
             .attr("x", function() {
                 if (i === 0) {
-                    return i * (w + 50) + 30;
+                    return i * (w + 60) + 20;
                 } else if (i === 1) {
-                    return i * (w + 50) + 54;
+                    return i * (w + 60) + 53;
                 } else if ([2,3,4,5].indexOf(i) !== -1) {
-                    return i * (w + 50) + 48;
+                    return i * (w + 60) + 48;
                 } else {
-                    return i * (w + 50) + 35;
+                    return i * (w + 60) + 30;
                 }
             })
             .attr("y", 60)
-            .style("font-size", "22px")
+            .style("font-size", "26px")
             .style("fill", "#555")
             .text(bins[i]);
 

@@ -13,11 +13,9 @@ module.exports = function (grunt) {
             dist: {
                 src: [
                     // Explicitly list files to determine order
+                    'dev/js/d3.v3.min.js',
                     'dev/js/init.js',
-                    'dev/js/chart.js',
-                    'dev/js/counties.js',
-                    'dev/js/modernizr.js',
-                    'dev/js/svg-support.js'
+                    'dev/js/chart.js'
                 ],
                 dest: 'js/script.js'
             }
@@ -49,11 +47,20 @@ module.exports = function (grunt) {
             },
             css: {
                 files: 'dev/sass/*.scss',
-                tasks: ['compass']
+                tasks: ['compass', 'cssmin']
             },
             images: {
                 files: 'dev/img/*',
                 tasks: ['imagemin']
+            }
+        },
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: 'css',
+                src: ['style.css'],
+                dest: 'css/',
+                ext: '.min.css'
             }
         },
         browserSync: {
@@ -74,6 +81,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     // What tasks should be run when "grunt" is entered in the command line
     grunt.registerTask('default', ['browserSync', 'watch']);

@@ -7,15 +7,15 @@ from query import csv_to_list
 @app.route('/')
 def index():
     page_url = BASE_URL + request.path
-    page_title = "Lyme Disease: The Quiet Epidemic"
+    page_title = "Lyme On The Rise: A Look At The Numbers"
     summary_statistics = csv_to_list()
 
     social = {
-        'title': "Lyme Disease Cases Are Increasing Faster In Vermont Than Anywhere In The Country",
+        'title': "Lyme On The Rise: A Look At The Numbers",
         'subtitle': "",
-        'img': "",
-        'description': "",
-        'twitter_text': "Fifty years ago this disease didn't have a name, now it's advancing up the North Country",
+        'img': "http://mediad.publicbroadcasting.net/p/shared/npr/styles/x_large/nprshared/201310/213547507.jpg",
+        'description': "Forty years ago Lyme Disease didn't even have a name, today it infects up to 300,000 annually with 95% of the cases coming from 13 states.",
+        'twitter_text': "Lime On The Rise: A Look At The Numbers",
         'twitter_hashtag': ""
     }
 
